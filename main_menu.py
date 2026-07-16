@@ -1,6 +1,5 @@
-from propython import *
 from translator import *
-from utils import *
+from common_utils import *
 from the_cities_game import *
 from time import sleep
 

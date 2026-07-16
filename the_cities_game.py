@@ -1,7 +1,6 @@
-from propython import pyread
 from translator import *
-from utils import *
-from mode_functions import *
+from common_utils import *
+from utils_tcg import *
 
 def the_cities_game(base, data):
     while True:
@@ -36,9 +35,9 @@ def the_cities_game(base, data):
     
             case 'Rules':
                 if lang=='ru':
-                    rules=pyread('ru_rules.txt')
+                    rules=pyread('ru_rules_tcg.txt')
                 else:
-                    rules=pyread('en_rules.txt')
+                    rules=pyread('en_rules_tcg.txt')
                 print(rules)
                 end=input(translator('Enter to exit mode: ', lang))
                 clear_screen()
