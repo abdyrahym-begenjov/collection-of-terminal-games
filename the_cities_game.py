@@ -8,16 +8,16 @@ def the_cities_game(base, data):
         lang=data['language']
         cities_list=data['cities']
 
-        print(f'{translator('The Cities Game', lang)}  🏙️')
-        print(translator('Game      Rules      Highscores      Exit', lang))
-        mode=input(translator('Choose a game mode: ', lang))
+        super_print(['The Cities Game', 2*' ', '🏙️'], lang)
+        super_print('Game      Rules      Highscores      Exit', lang)
+        mode=super_input('Choose a game mode: ', lang)
         mode=new_word(mode, lang)
         clear_screen()
         match mode:
             case 'Game':
                 while True:
-                    print(translator('Infinity          Party', lang))
-                    mode_game=input(translator('Choose a game mode: ', lang))
+                    super_print('Infinity          Party', lang)
+                    mode_game=super_input('Choose a game mode: ', lang)
                     mode_game=new_word(mode_game, lang)
                     if mode_game=='Infinity' or mode_game=='Party':
                         break
@@ -30,7 +30,7 @@ def the_cities_game(base, data):
                 else:
                     mode_infinity(name, cities_list, base, lang)
 
-                end=input(translator('Enter to exit mode: ', lang))
+                end=super_input('Enter to exit mode: ', lang)
                 clear_screen()
     
             case 'Rules':
@@ -39,22 +39,22 @@ def the_cities_game(base, data):
                 else:
                     rules=pyread('en_rules_tcg.txt')
                 print(rules)
-                end=input(translator('Enter to exit mode: ', lang))
+                end=super_input('Enter to exit mode: ', lang)
                 clear_screen()
 
             case 'Highscores':
                 draw_leaderboard(base, lang)
-                end=input(translator('Enter to exit mode: ', lang))
+                end=super_input('Enter to exit mode: ', lang)
                 clear_screen()
 
             case 'Exit':
-                exit_confirm=input(translator('Do you want to exit (\"Yes\" or \"No\"): ', lang))
+                exit_confirm=super_input('Do you want to exit (\"Yes\" or \"No\"): ', lang)
                 exit_confirm=new_word(exit_confirm, lang)
                 if exit_confirm=='No':
                     clear_screen()
                 else:
-                    print(translator('Goodbye!!!', lang))
-                    input(translator('Enter to exit: ', lang))
+                    super_input('Goodbye!!!', lang)
+                    super_input('Enter to exit: ', lang)
                     break
             case _:
                 clear_screen()

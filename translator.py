@@ -1,4 +1,5 @@
 rutranslate={
+    '(GitHub: abdyrahym-begenjov)': '(GitHub: abdyrahym-begenjov)',
     'The Cities Game': 'Города',
     'COLLECTION OF TERMINAL GAMES': 'КОЛЛЕКЦИЯ ТЕРМИНАЛЬНЫХ ИГР',
     'Choose a game or parameter: ': 'Выберите игру или параметр: ',
@@ -25,8 +26,8 @@ rutranslate={
     'Do you want to change parameters (Enter \"Name\" or \"Language\"): ': 'Хотите ли вы изменить параметры (введите \"Имя\" или \"Язык\"): ',
     'Do you want to exit (\"Yes\" or \"No\"): ': 'Вы хотите завершить (\"Да\" или \"Нет\"): ',
     'Goodbye!!!': 'До свидания!!',
-    'Name': 'Имя',
-    'Language': 'Язык',
+    'Name: ': 'Имя: ',
+    'Language: ': 'Язык: ',
     'No': 'Нет',
     'Game': 'Игра',
     'Rules': 'Правилы',
@@ -94,6 +95,8 @@ def translator(word, language):
                 return 'Error!!!'
             return entranslate[word]
         case 'ru':
+            if word not in rutranslate:
+                return word
             return rutranslate[word]
         case _:
             return '???'

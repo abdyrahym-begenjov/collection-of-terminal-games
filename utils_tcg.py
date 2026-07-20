@@ -5,14 +5,14 @@ from time import sleep
 
 def game(p, lst1, base, lang):
     while True:
-        name=input(f'[{p[0]}] {translator('Enter name: ', lang)}')
+        name=super_input(['[', p[0], ']', 'Enter name: '], lang)
         name=name.strip()
         if name=='':
-            print(translator('Error!!!', lang))
+            super_print('Error!!!', lang, Fore.RED)
         elif len(name)>16:
-            print(translator('The name must not exceed 16 characters', lang))
+            super_print('The name must not exceed 16 characters', lang)
         elif name in lst1:
-            print(translator('This name is already taken', lang))
+            super_print('This name is already taken', lang)
         else:
             if name not in base:
                 base['The Cities Game'][name]=[0, 0]
@@ -35,7 +35,7 @@ def selection_of_order(lst1, game_count, lang, Player):
             else:
                 r.append(i)
         if r==[]:
-            print(translator('Moment of Truth  🥁', lang))
+            super_print('Moment of Truth  🥁', lang)
             match game_count:
                 case 2:
                     sleep(2)
@@ -57,8 +57,8 @@ def selection_of_order(lst1, game_count, lang, Player):
 
 def choose_parameter(lang):
     while True:
-        print(translator('Parameters of game: Easy (10), Normal (20), Hard (30)', lang))
-        parameter=input(translator('Enter the parameter of game: ', lang))
+        super_print('Parameters of game: Easy (10), Normal (20), Hard (30)', lang)
+        parameter=super_input('Enter the parameter of game: ', lang)
         parameter=new_word(parameter, lang)
         match parameter:
             case 'Easy':
@@ -92,7 +92,7 @@ def star(points, lang):
             return translator('Loser!!!', lang)
 
 def draw_leaderboard(base, lang):
-    print(translator('LEADERBOARD:', lang))
+    super_print('LEADERBOARD:', lang)
     base=list(base['The Cities Game'].items())
     base.sort(key=lambda x: x[1][0]+x[1][1], reverse=True)
     base=dict(base)
@@ -131,115 +131,115 @@ class Player:
 
 def play(obj, word, max_points, result1, cities_list, cities_set, losers, have_winner, lang):
     if obj.out==False:
-        print(f'[{obj.name}]')
+        super_print(['[', obj.name, ']'], lang)
         while True:
             if obj.gp==True:
-                print(translator('PASS', lang))
+                super_print('PASS', lang)
                 obj.gp=False
                 break
             if word[-1] in ('ъ', 'ы', 'ь'):
                 word=word[:-1]
             city=word
             print(word)
-            word=input(f'{translator('You have', lang)} {obj.hearts} {translator('❤️ . Enter the word or ability: ', lang)}')
+            word=super_input(['You have', obj.hearts, '❤️ . Enter the word or ability: '], lang)
             word=word.title().strip()
             if word=='':
-                print(translator('You must enter the word!!!', lang))
+                super_print('You must enter the word!!!', lang)
                 word=city
             elif word=='Blaster' or word=='Бластер':
                 if obj.blaster==True:
                     while obj.blaster:
-                        print(translator('BLASTER  🔫', lang))
-                        da_blin=input(translator('Who do you want to use the blaster on?: ', lang))
+                        super_print('BLASTER  🔫', lang)
+                        da_blin=super_input('Who do you want to use the blaster on?: ', lang)
                         if da_blin==obj.name:
-                            print(translator('Don\'t write your name!!!', lang))
+                            super_print('Don\'t write your name!!!', lang)
                         elif da_blin in [i.name for i in result1]:
                             for i in result1:
                                 if da_blin==i.name:
                                     if i.hearts==0:
-                                        print(translator('This player is out. Choose another one.', lang))
+                                        super_print('This player is out. Choose another one.', lang)
                                     else:
-                                        print(f'{da_blin} 🔫 {obj.name}')
+                                        super_print([da_blin, '🔫', obj.name], lang)
                                         i.hearts-=1
                                         if i.hearts==0:
                                             print('-'*125)
                                             print(f'[{i.name}]')
-                                            print(translator('You are eliminated from the game!!!', lang))
+                                            super_print('You are eliminated from the game!!!', lang)
                                             if losers==[]:
-                                                print(translator('You don\'t get anything because you took the last place.', lang))
+                                                super_print('You don\'t get anything because you took the last place.', lang)
                                                 i.points=0
                                             else:
-                                                print(f'{translator('You received', lang)} {i.points} {translator('points.', lang)}')
-                                            print('-'*125)
-                                            print(f'[{obj.name}]')
+                                                super_print(['You received', i.points, 'points.'], lang)
+                                            super_print('-'*125, lang)
+                                            super_print(['[', obj.name, ']'], lang)
                                             i.out=True
                                             losers.append(i.name)
                                         obj.blaster=False
                                         break
                         else:
-                            print(translator('Error!!!', lang))
+                            super_print('Error!!!', lang, Fore.RED)
                 else:
-                    print(translator('NO', lang))
+                    super_print('NO', lang)
                 word=city
             elif word=='Game Pass' or word=='Пропуск':
                 if obj.game_pass==True:
-                    print(translator('GAME PASS  🦘', lang))
+                    super_print('GAME PASS  🦘', lang)
                     obj.gp=True
                     obj.game_pass=False
                 else:
-                    print(translator('NO', lang))
+                    super_print('NO', lang)
                 word=city
             elif word=='Replacement' or word=='Замена':
                 if obj.replacement==True:
-                    print(translator('REPLACEMENT  🦝', lang))
+                    super_print('REPLACEMENT  🦝', lang)
                     while True:
                         letter=city[-1].upper()
                         new_list=[i for i in cities_list if i.startswith(letter) and i not in cities_set]
                         if new_list==[]:
-                            print(translator('There are no suitable cities', lang))
+                            super_print('There are no suitable cities', lang)
                         else:
                             city1=city
                             city=choice(new_list)
-                            print(f'{city1} --> {city}')
+                            super_print([city1, '-->', city], lang)
                         obj.replacement=False
                         break
                 else:
-                    print(translator('NO', lang))
+                    super_print('NO', lang)
                 word=city
             elif word in cities_set:
-                print(translator('This word has already been used.', lang))
+                super_print('This word has already been used.', lang)
                 word=city
             elif word[0]==city[-1].upper() and word in cities_list and word not in cities_set:
                 obj.points+=1
                 cities_set.add(word)
                 break
             else:
-                print(translator('Error!!!', lang))
+                super_print('Error!!!', lang, Fore.RED)
                 obj.hearts-=1
                 word=city
                 break
         print(f'{translator('Points:', lang)} {obj.points}')
         if obj.points>=max_points:
-            print(translator('You have received the maximum points', lang))
-            print(translator('You are WINNER!!!', lang))
+            super_print('You have received the maximum points', lang)
+            super_print('You are WINNER!!!', lang)
         if obj.hearts<=0:
-            print(translator('You are eliminated from the game!!!', lang))
+            super_print('You are eliminated from the game!!!', lang)
             if losers==[]:
-                print(translator('You don\'t get anything because you took the last place.', lang))
+                super_print('You don\'t get anything because you took the last place.', lang)
                 obj.points=0
             else:
-                print(f'{translator('You received', lang)} {obj.points} {translator('points.', lang)}')
+                super_print(['You received', obj.points, 'points.'], lang)
             obj.out=True
             losers.append(obj.name)
-        print('-'*125)
+        super_print('-'*125, lang)
         spisok2_result=(obj.points, obj.out, obj.hearts, word, cities_set, losers, have_winner)
     else:
         spisok2_result=(obj.points, obj.out, obj.hearts, word, cities_set, losers, have_winner)
     return spisok2_result
 
 def mode_infinity(name, cities_list, base, lang):
-    start=input(translator('Enter to start game: ', lang))
-    print(translator('Loading...', lang))
+    start=super_input('Enter to start game: ', lang)
+    super_print('Loading...', lang)
     sleep(2)
     clear_screen()
 
@@ -254,36 +254,36 @@ def mode_infinity(name, cities_list, base, lang):
             word=word[:-1]
         city=word
         if len(cities_set)==len(cities_list):
-            print(translator('You are ABSOLUTE CHAMPION!!!', lang))
-            print(f'{translator('You received', lang)} {points} {translator('points.', lang)}')
+            super_print('You are ABSOLUTE CHAMPION!!!', lang)
+            super_print(['You received', points, 'points.'], lang)
             print(star(points, lang))
             break
         if hearts!=0:
-            print(f'{number}) {word}')
-            word=input(f'{translator('You have', lang)} {hearts} {translator('❤️ . Enter the word: ', lang)}')
+            super_print([f'{number})', word], lang)
+            word=super_input(['You have', hearts, '❤️ . Enter the word: '], lang)
             word=word.title().strip()
         if hearts<=0:
-            print(translator('Game Over!!!', lang))
-            print(f'{translator('You received', lang)} {points} {translator('points.', lang)}')
+            super_print('Game Over!!!', lang)
+            super_print(['You received', points, 'points.'], lang)
             print(star(points, lang))
             break    
         elif word=='':
-            print(translator('You must enter the word!!!', lang))
+            super_print('You must enter the word!!!', lang)
             word=city
         elif word in cities_set:
-            print(translator('This word has already been used.', lang))
+            super_print('This word has already been used.', lang)
             word=city
         elif word[0]==city[-1].upper() and word in cities_list and word not in cities_set:
             number+=1
             points+=1
             cities_set.add(word)
         else:
-            print(translator('Error!!!', lang))
+            super_print('Error!!!', lang, Fore.RED)
             hearts-=1
             word=city
             
     if base['The Cities Game'][name][0]<points:
-        print(translator('You\'ve broken a new highscore!!!', lang))
+        super_print('You\'ve broken a new highscore!!!', lang)
         base['The Cities Game'][name][0]=points
         pywrite('base.json', base)
 
@@ -291,7 +291,7 @@ def mode_party(name, cities_list, base, lang):
     p=[translator('Player 2', lang), translator('Player 3', lang), translator('Player 4', lang)]
     lst1=[name]
     while True:
-        game_count=input(translator('Enter number of the players: ', lang))
+        game_count=super_input('Enter number of the players: ', lang)
         if game_count in ('2', '3', '4'):
             try:
                 game_count=int(game_count)
@@ -311,8 +311,8 @@ def mode_party(name, cities_list, base, lang):
     for n, i in enumerate(result1, 1):
         print(f'{n}) {i.name}')
                 
-    start=input(translator('Enter to start game: ', lang))
-    print(translator('Loading...', lang))
+    start=super_input('Enter to start game: ', lang)
+    super_print('Loading...', lang)
     sleep(2)
     clear_screen()
 
@@ -338,24 +338,24 @@ def mode_party(name, cities_list, base, lang):
             winner=spisok[0][2]
             winner.points+=max_points
             if winner.blaster==True and winner.replacement==True and winner.game_pass==True:
-                print(f'[{winner.name}]')
-                print(translator('Since you didn\'t use any abilities, you get double points', lang))
+                super_print(['[', winner.name, ']'], lang)
+                super_print('Since you didn\'t use any abilities, you get double points', lang)
                 winner.points*=2
-                print('-'*125)
+                super_print('-'*125, lang)
             if game_count==2:
-                print(f'1) {spisok1[0]} - {translator('WINNER', lang)}  😎🏆. {translator('Points:', lang)} {winner.points}')
-                print(f'2) {spisok1[1]} - {translator('LOSER', lang)}  😫. {translator('Points:', lang)} {spisok2[1]}')
+                super_print(['1)', spisok1[0], '-', 'WINNER', ' 😎🏆.', 'Points:', winner.points], lang)
+                super_print(['2)', spisok1[1], '-', 'LOSER', ' 😫.', 'Points:', spisok2[1]], lang)
                 break
             elif game_count==3:
-                print(f'1) {spisok1[0]} - {translator('WINNER', lang)}  😎🏆. {translator('Points:', lang)} {winner.points}')
-                print(f'2) {spisok1[1]} - {translator('ROUND-UP', lang)}  😀. {translator('Points:', lang)} {spisok2[1]}')
-                print(f'3) {spisok1[2]} - {translator('LOSER', lang)}  😫. {translator('Points:', lang)} {spisok2[2]}')
+                super_print(['1)', spisok1[0], '-', 'WINNER', '😎🏆.', 'Points:', winner.points], lang)
+                super_print(['2)', spisok1[1], '-', 'ROUND-UP', ' 😀.', 'Points:', spisok2[1]], lang)
+                super_print(['3)', spisok1[2], '-', 'LOSER', ' 😫.', 'Points:', spisok2[2]], lang)
                 break
             elif game_count==4:
-                print(f'1) {spisok1[0]} - {translator('WINNER', lang)}  😎🏆. {translator('Points:', lang)} {winner.points}')
-                print(f'2) {spisok1[1]} - {translator('ROUND-UP', lang)}  😀. {translator('Points:', lang)} {spisok2[1]}')
-                print(f'3) {spisok1[2]} - {translator('BRONZE MEDALIST', lang)}  😐. {translator('Points:', lang)} {spisok2[2]}')
-                print(f'4) {spisok1[3]} - {translator('LOSER', lang)}  😫. {translator('Points:', lang)} {spisok2[3]}')
+                super_print(['1)', spisok1[0], '-', 'WINNER', '😎🏆.', 'Points:', winner.points], lang)
+                super_print(['2)', spisok1[1], '-', 'ROUND-UP', ' 😀.', 'Points:', spisok2[1]], lang)
+                super_print(['3)', spisok1[2], '-', 'BRONZE MEDALIST', ' 😐.', 'Points:', spisok2[2]], lang)
+                super_print(['4)', spisok1[3], '-', 'LOSER', ' 😫.', 'Points:', spisok2[3]], lang)
                 break
     for player in result1:
         base['The Cities Game'][player.name][1]+=int(player.points)

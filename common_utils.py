@@ -2,34 +2,25 @@ from translator import *
 from subprocess import run
 from platform import system
 from json import load, dump
+from colorama import Fore
 
 def pyread(filename):
-    try:
-        match filename:
-            case filename if filename.endswith('.txt'):
-                with open(filename, 'r', encoding='utf-8') as file:
-                    return file.read().strip()
-            case filename if filename.endswith('.json'):
-                with open(filename, 'r', encoding='utf-8') as file:
-                    return load(file)
-            case _:
-                print('Error!!!')
-    except FileNotFoundError:
-        print('File is not found!!!')
+    match filename:
+        case filename if filename.endswith('.txt'):
+            with open(filename, 'r', encoding='utf-8') as file:
+                return file.read().strip()
+        case filename if filename.endswith('.json'):
+            with open(filename, 'r', encoding='utf-8') as file:
+                return load(file)
 
 def pywrite(filename, value):
-    try:
-        match filename:
-            case filename if filename.endswith('.txt'):
-                with open(filename, 'w', encoding='utf-8') as file:
-                    file.write(value)
-            case filename if filename.endswith('.json'):
-                with open(filename, 'w', encoding='utf-8') as file:
-                    dump(value, file, indent=4, ensure_ascii=False)
-            case _:
-                print('Error!!!')
-    except FileNotFoundError:
-        print('File is not found!!!')
+    match filename:
+        case filename if filename.endswith('.txt'):
+            with open(filename, 'w', encoding='utf-8') as file:
+                file.write(value)
+        case filename if filename.endswith('.json'):
+            with open(filename, 'w', encoding='utf-8') as file:
+                dump(value, file, indent=4, ensure_ascii=False)
 
 def clear_screen():
     current_os=system()
@@ -37,6 +28,23 @@ def clear_screen():
         run(["cls"], shell=True)
     else:
         run(['clear'])
+
+def super_print(text, lang, color=Fore.WHITE):
+    if isinstance(text, list):
+        lst=[color+translator(str(i), lang) for i in text]
+        new_text=' '.join(lst)
+    else:
+        new_text=color+translator(text, lang)
+    print(new_text)
+
+def super_input(text, lang, color=Fore.WHITE):
+    if isinstance(text, list):
+        lst=[color+translator(str(i), lang) for i in text]
+        new_text=' '.join(lst)
+    else:
+        new_text=color+translator(text, lang)
+    result=input(new_text)
+    return result
 
 def enter_lang(data):
     clear_screen()
@@ -63,14 +71,14 @@ def enter_lang(data):
 def enter_name(data, base, lang):
     clear_screen()
     while True:
-        name=input(translator('Enter your name: ', lang))
+        name=super_input('Enter your name: ', lang)
         name=name.strip()
         if name=='':
             clear_screen()
-            print(translator('Error!!!', lang))
+            super_print('Error!!!', lang, Fore.RED)
         elif len(name)>16:
             clear_screen()
-            print(translator('The name must not exceed 16 characters', lang))
+            super_print('The name must not exceed 16 characters', lang)
         else:
             data['name']=name
             pywrite('data.json', data)
@@ -84,3 +92,4 @@ def new_word(word, lang):
     if lang=='ru':
         word=translator(word, 'en1')
     return word
+

@@ -2,6 +2,9 @@ from translator import *
 from common_utils import *
 from the_cities_game import *
 from time import sleep
+from colorama import init
+
+init(autoreset=True)
 
 data=pyread('data.json')
 base=pyread('base.json')
@@ -18,14 +21,14 @@ if name=='':
     clear_screen()
 
 while True:
-    print(translator('COLLECTION OF TERMINAL GAMES', lang))
-    print(f'{translator('Creator: Abdyrahym Begenjov', lang)}     (GitHub: abdyrahym-begenjov)')
-    print(f'{translator('The Cities Game', lang)}        {translator('Settings', lang)}       {translator('Exit', lang)}')
-    choose_game=input(translator('Choose a game or parameter: ', lang))
+    super_print('COLLECTION OF TERMINAL GAMES', lang)
+    super_print(['Creator: Abdyrahym Begenjov', 10*' ','(GitHub: abdyrahym-begenjov)'], lang)
+    super_print(['The Cities Game', 6*' ', 'Settings', 6*' ','Exit'], lang)
+    choose_game=super_input('Choose a game or parameter: ', lang)
     choose_game=new_word(choose_game, lang)
     match choose_game:
         case 'The Cities Game':
-            print(translator('Loading...', lang))
+            super_print('Loading...', lang)
             sleep(2)
             clear_screen()
             the_cities_game(base, data)
@@ -33,9 +36,9 @@ while True:
         case 'Settings':
             clear_screen()
             while True:
-                print(f'{translator("Name", lang)}: {data['name']}')
-                print(f'{translator("Language", lang)}: {data['language']}')
-                change=input(translator('Do you want to change parameters (Enter \"Name\" or \"Language\"): ', lang))
+                super_print(['Name: ', data['name']], lang)
+                super_print(['Language: ', data['language']], lang)
+                change=super_input('Do you want to change parameters (Enter \"Name\" or \"Language\"): ', lang)
                 change=new_word(change, lang)
                 match change:
                     case 'Name':
@@ -49,13 +52,13 @@ while True:
             clear_screen()
         case 'Exit':
             clear_screen()
-            exit_confirm=input(translator('Do you want to exit (\"Yes\" or \"No\"): ', lang))
+            exit_confirm=super_input('Do you want to exit (\"Yes\" or \"No\"): ', lang)
             exit_confirm=new_word(exit_confirm, lang)
             if exit_confirm=='No':
                 clear_screen()
             else:
-                print(translator('Goodbye!!!', lang))
-                input(translator('Enter to exit: ', lang))
+                super_print('Goodbye!!!', lang)
+                super_input('Enter to exit: ', lang)
                 break
         case _:
             clear_screen()
