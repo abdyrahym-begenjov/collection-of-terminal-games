@@ -28,6 +28,8 @@ rutranslate={
     'Goodbye!!!': 'До свидания!!',
     'Name: ': 'Имя: ',
     'Language: ': 'Язык: ',
+    'Name': 'Имя',
+    'Language': 'Язык',
     'No': 'Нет',
     'Game': 'Игра',
     'Rules': 'Правилы',
