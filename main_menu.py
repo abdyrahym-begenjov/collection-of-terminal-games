@@ -2,7 +2,7 @@ from translator import *
 from common_utils import *
 from the_cities_game import *
 from time import sleep
-from colorama import init
+from colorama import init, Style
 
 init(autoreset=True)
 
@@ -21,7 +21,7 @@ if name=='':
     clear_screen()
 
 while True:
-    super_print('COLLECTION OF TERMINAL GAMES', lang)
+    print(Style.BRIGHT+translator('COLLECTION OF TERMINAL GAMES', lang))
     super_print(['Creator: Abdyrahym Begenjov', 10*' ','(GitHub: abdyrahym-begenjov)'], lang)
     super_print(['The Cities Game', 6*' ', 'Settings', 6*' ','Exit'], lang)
     choose_game=super_input('Choose a game or parameter: ', lang)
@@ -36,9 +36,9 @@ while True:
         case 'Settings':
             clear_screen()
             while True:
-                super_print(['Name: ', data['name']], lang)
-                super_print(['Language: ', data['language']], lang)
-                change=super_input('Do you want to change parameters (Enter \"Name\" or \"Language\"): ', lang)
+                super_print(['Name:', data['name']], lang)
+                super_print(['Language:', data['language']], lang)
+                change=super_input('Do you want to change parameters (Enter \"Name\" or \"Language\")?: ', lang)
                 change=new_word(change, lang)
                 match change:
                     case 'Name':
@@ -52,7 +52,7 @@ while True:
             clear_screen()
         case 'Exit':
             clear_screen()
-            exit_confirm=super_input('Do you want to exit (\"Yes\" or \"No\"): ', lang)
+            exit_confirm=super_input('Do you want to exit (\"Yes\" or \"No\")?: ', lang)
             exit_confirm=new_word(exit_confirm, lang)
             if exit_confirm=='No':
                 clear_screen()

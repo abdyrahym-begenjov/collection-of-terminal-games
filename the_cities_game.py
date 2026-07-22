@@ -38,7 +38,7 @@ def the_cities_game(base, data):
                     rules=pyread('ru_rules_tcg.txt')
                 else:
                     rules=pyread('en_rules_tcg.txt')
-                print(rules)
+                super_print(rules, lang)
                 end=super_input('Enter to exit mode: ', lang)
                 clear_screen()
 

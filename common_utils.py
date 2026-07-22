@@ -78,7 +78,7 @@ def enter_name(data, base, lang):
             super_print('Error!!!', lang, Fore.RED)
         elif len(name)>16:
             clear_screen()
-            super_print('The name must not exceed 16 characters', lang, Fore.RED)
+            super_print('The name must not exceed 16 characters!!!', lang, Fore.RED)
         else:
             data['name']=name
             pywrite('data.json', data)

@@ -5,14 +5,14 @@ from time import sleep
 
 def game(p, lst1, base, lang):
     while True:
-        name=super_input(['[', p[0], ']', 'Enter name: '], lang, Fore.LIGHTYELLOW_EX)
+        name=super_input([f'[{p[0]}]', 'Enter name: '], lang, Fore.LIGHTYELLOW_EX)
         name=name.strip()
         if name=='':
             super_print('Error!!!', lang, Fore.RED)
         elif len(name)>16:
-            super_print('The name must not exceed 16 characters', lang, Fore.RED)
+            super_print('The name must not exceed 16 characters!!!', lang, Fore.RED)
         elif name in lst1:
-            super_print('This name is already taken', lang, Fore.RED)
+            super_print('This name is already taken!!!', lang, Fore.RED)
         else:
             if name not in base['The Cities Game']:
                 base['The Cities Game'][name]=[0, 0]
@@ -95,6 +95,8 @@ def draw_leaderboard(base, lang):
     super_print('LEADERBOARD:', lang)
     base=list(base['The Cities Game'].items())
     base.sort(key=lambda x: x[1][0]+x[1][1], reverse=True)
+    max_value=base[0][1][0]+base[0][1][1]
+    min_value=base[-1][1][0]+base[-1][1][1]
     base=dict(base)
 
     lst=['Infinity', 'Party', 'Overall Result']
@@ -103,9 +105,9 @@ def draw_leaderboard(base, lang):
     lst=' '.join(lst)
     line1=f'|{translator('NAME |', lang):>18} {lst:<16}'
     line='-'*len(line1)
-    print(line)
-    print(line1)
-    print(line)
+    super_print(line, lang, Fore.CYAN)
+    super_print(line1, lang, Fore.CYAN)
+    super_print(line, lang, Fore.CYAN)
 
     for i, j in base.items():
         name=i
@@ -115,8 +117,15 @@ def draw_leaderboard(base, lang):
         name1=f'{name} |'
     
         line2=f'|{name1:>18} {a:<16}| {b:<16}| {c:<16}|'
-        print(line2)
-        print(line)
+        if c==max_value:
+            super_print(line2, lang, Fore.GREEN)
+            super_print(line, lang, Fore.GREEN)
+        elif c==min_value:
+            super_print(line2, lang, Fore.RED)
+            super_print(line, lang, Fore.RED)
+        else:
+            super_print(line2, lang, Fore.YELLOW)
+            super_print(line, lang, Fore.YELLOW)
 
 class Player:
     def __init__(self, name):
@@ -131,7 +140,7 @@ class Player:
 
 def play(obj, word, max_points, result1, cities_list, cities_set, losers, have_winner, lang):
     if obj.out==False:
-        super_print(['[', obj.name, ']'], lang, Fore.LIGHTYELLOW_EX)
+        super_print(f'[{obj.name}]', lang, Fore.LIGHTYELLOW_EX)
         while True:
             if obj.gp==True:
                 super_print('PASS', lang, Fore.BLUE)
@@ -171,7 +180,7 @@ def play(obj, word, max_points, result1, cities_list, cities_set, losers, have_w
                                             else:
                                                 super_print(['You received', i.points, 'points.'], lang, Fore.LIGHTBLUE_EX)
                                             print('-'*125)
-                                            super_print(['[', obj.name, ']'], lang, Fore.LIGHTYELLOW_EX)
+                                            super_print(f'[{obj.name}]', lang, Fore.LIGHTYELLOW_EX)
                                             i.out=True
                                             losers.append(i.name)
                                         obj.blaster=False
@@ -196,7 +205,7 @@ def play(obj, word, max_points, result1, cities_list, cities_set, losers, have_w
                         letter=city[-1].upper()
                         new_list=[i for i in cities_list if i.startswith(letter) and i not in cities_set]
                         if new_list==[]:
-                            super_print('There are no suitable cities', lang, Fore.RED)
+                            super_print('There are no suitable cities!!!', lang, Fore.RED)
                         else:
                             city1=city
                             city=choice(new_list)
@@ -207,7 +216,7 @@ def play(obj, word, max_points, result1, cities_list, cities_set, losers, have_w
                     super_print('NO', lang, Fore.RED)
                 word=city
             elif word in cities_set:
-                super_print('This word has already been used.', lang, Fore.RED)
+                super_print('This word has already been used!!!', lang, Fore.RED)
                 word=city
             elif word[0]==city[-1].upper() and word in cities_list and word not in cities_set:
                 obj.points+=1
@@ -220,7 +229,7 @@ def play(obj, word, max_points, result1, cities_list, cities_set, losers, have_w
                 break
         super_print(['Points:', obj.points], lang)
         if obj.points>=max_points:
-            super_print('You have received the maximum points', lang, Fore.GREEN)
+            super_print('You have received the maximum points.', lang, Fore.GREEN)
             super_print('You are WINNER!!!', lang, Fore.GREEN)
         if obj.hearts<=0:
             super_print('You are eliminated from the game!!!', lang, Fore.LIGHTRED_EX)
@@ -271,7 +280,7 @@ def mode_infinity(name, cities_list, base, lang):
             super_print('You must enter the word!!!', lang, Fore.RED)
             word=city
         elif word in cities_set:
-            super_print('This word has already been used.', lang, Fore.RED)
+            super_print('This word has already been used!!!', lang, Fore.RED)
             word=city
         elif word[0]==city[-1].upper() and word in cities_list and word not in cities_set:
             number+=1
@@ -309,7 +318,7 @@ def mode_party(name, cities_list, base, lang):
                 
     result1, new_lst=selection_of_order(lst1, game_count, lang, Player)
     for n, i in enumerate(result1, 1):
-        print(f'{n}) {i.name}')
+        super_print(f'{n}) {i.name}', lang, Fore.LIGHTCYAN_EX)
                 
     start=super_input('Enter to start game: ', lang, Fore.LIGHTCYAN_EX)
     super_print('Loading...', lang, Fore.LIGHTCYAN_EX)
@@ -338,10 +347,10 @@ def mode_party(name, cities_list, base, lang):
             winner=spisok[0][2]
             winner.points+=max_points
             if winner.blaster==True and winner.replacement==True and winner.game_pass==True:
-                super_print(['[', winner.name, ']'], lang, Fore.LIGHTYELLOW_EX)
+                super_print(f'[{winner.name}]', lang, Fore.LIGHTYELLOW_EX)
                 super_print('Since you didn\'t use any abilities, you get double points', lang, Fore.GREEN)
                 winner.points*=2
-                super_print('-'*125, lang, Fore.LIGHTBLUE_EX)
+                print('-'*125)
             if game_count==2:
                 super_print(['1)', spisok1[0], '-', 'WINNER', ' 😎🏆.', 'Points:', winner.points], lang, Fore.GREEN)
                 super_print(['2)', spisok1[1], '-', 'LOSER', ' 😫.', 'Points:', spisok2[1]], lang, Fore.LIGHTRED_EX)
