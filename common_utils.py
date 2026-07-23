@@ -2,7 +2,21 @@ from translator import *
 from subprocess import run
 from platform import system
 from json import load, dump
-from colorama import Fore
+from colorama import Fore, Style
+
+colors={
+    'White': Fore.WHITE,
+    'Red': Fore.RED,
+    'Light Red': Fore.LIGHTRED_EX,
+    'Cyan': Fore.CYAN,
+    'Light Cyan': Fore.LIGHTCYAN_EX,
+    'Blue': Fore.BLUE,
+    'Light Blue': Fore.LIGHTBLUE_EX,
+    'Yellow': Fore.YELLOW,
+    'Light Yellow': Fore.LIGHTYELLOW_EX,
+    'Green': Fore.GREEN,
+    'Magenta': Fore.MAGENTA
+}
 
 def pyread(filename):
     match filename:
@@ -29,20 +43,20 @@ def clear_screen():
     else:
         run(['clear'])
 
-def super_print(text, lang, color=Fore.WHITE):
+def super_print(text, lang, color='White', style_text=Style.NORMAL):
     if isinstance(text, list):
-        lst=[color+translator(str(i), lang) for i in text]
+        lst=[colors[color]+style_text+translator(str(i), lang) for i in text]
         new_text=' '.join(lst)
     else:
-        new_text=color+translator(text, lang)
+        new_text=colors[color]+style_text+translator(text, lang)
     print(new_text)
 
-def super_input(text, lang, color=Fore.WHITE):
+def super_input(text, lang, color='White', style_text=Style.NORMAL):
     if isinstance(text, list):
-        lst=[color+translator(str(i), lang) for i in text]
+        lst=[colors[color]+style_text+translator(str(i), lang) for i in text]
         new_text=' '.join(lst)
     else:
-        new_text=color+translator(text, lang)
+        new_text=colors[color]+style_text+translator(text, lang)
     result=input(new_text)
     return result
 
@@ -75,10 +89,10 @@ def enter_name(data, base, lang):
         name=name.strip()
         if name=='':
             clear_screen()
-            super_print('Error!!!', lang, Fore.RED)
+            super_print('Error!!!', lang, 'Red')
         elif len(name)>16:
             clear_screen()
-            super_print('The name must not exceed 16 characters!!!', lang, Fore.RED)
+            super_print('The name must not exceed 16 characters!!!', lang, 'Red')
         else:
             data['name']=name
             pywrite('data.json', data)

@@ -21,7 +21,7 @@ if name=='':
     clear_screen()
 
 while True:
-    print(Style.BRIGHT+translator('COLLECTION OF TERMINAL GAMES', lang))
+    super_print('COLLECTION OF TERMINAL GAMES', lang, 'White', Style.BRIGHT)
     super_print(['Creator: Abdyrahym Begenjov', 10*' ','(GitHub: abdyrahym-begenjov)'], lang)
     super_print(['The Cities Game', 6*' ', 'Settings', 6*' ','Exit'], lang)
     choose_game=super_input('Choose a game or parameter: ', lang)

@@ -8,16 +8,16 @@ def the_cities_game(base, data):
         lang=data['language']
         cities_list=data['cities']
 
-        super_print(['The Cities Game', 2*' ', '🏙️'], lang, Fore.CYAN)
-        super_print('Game      Rules      Highscores      Exit', lang, Fore.CYAN)
-        mode=super_input('Choose a game mode: ', lang, Fore.CYAN)
+        super_print(['The Cities Game', ' ', '🏙️'], lang, 'Cyan')
+        super_print('Game      Rules      Highscores      Exit', lang, 'Cyan')
+        mode=super_input('Choose a game mode: ', lang, 'Cyan')
         mode=new_word(mode, lang)
         clear_screen()
         match mode:
             case 'Game':
                 while True:
-                    super_print('Infinity          Party', lang, Fore.LIGHTCYAN_EX)
-                    mode_game=super_input('Choose a game mode: ', lang, Fore.LIGHTCYAN_EX)
+                    super_print('Infinity          Party', lang, 'Light Cyan')
+                    mode_game=super_input('Choose a game mode: ', lang, 'Light Cyan')
                     mode_game=new_word(mode_game, lang)
                     if mode_game=='Infinity' or mode_game=='Party':
                         break
@@ -48,13 +48,6 @@ def the_cities_game(base, data):
                 clear_screen()
 
             case 'Exit':
-                exit_confirm=super_input('Do you want to exit (\"Yes\" or \"No\"): ', lang)
-                exit_confirm=new_word(exit_confirm, lang)
-                if exit_confirm=='No':
-                    clear_screen()
-                else:
-                    super_input('Goodbye!!!', lang)
-                    super_input('Enter to exit: ', lang)
-                    break
+                break
             case _:
                 clear_screen()
