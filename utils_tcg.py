@@ -5,7 +5,7 @@ from time import sleep
 
 def game(p, lst1, base, lang):
     while True:
-        name=super_input([f'[{p[0]}]', 'Enter name: '], lang, Fore.LIGHTYELLOW_EX)
+        name=super_input([f'[{p[0]}]', 'Enter name: '], lang, 'Light Yellow')
         name=name.strip()
         if name=='':
             super_print('Error!!!', lang, 'Red')
@@ -104,9 +104,9 @@ def draw_leaderboard(base, lang):
     lst=[f'{i.upper().strip():<16}|' for i in lst]
     lst=' '.join(lst)
     line1=f'|{translator('NAME |', lang):>18} {lst:<16}'
-    line='-'*len(line1)
+    line=(Style.BRIGHT+'-')*len(line1)
     super_print(line, lang, 'Cyan')
-    super_print(line1, lang, 'Cyan')
+    super_print(line1, lang, 'Cyan', Style.BRIGHT)
     super_print(line, lang, 'Cyan')
 
     for i, j in base.items():
@@ -140,7 +140,7 @@ class Player:
 
 def play(obj, word, max_points, result1, cities_list, cities_set, losers, have_winner, lang):
     if obj.out==False:
-        super_print(f'[{obj.name}]', lang, Fore.LIGHTYELLOW_EX)
+        super_print(f'[{obj.name}]', lang, 'Light Yellow')
         while True:
             if obj.gp==True:
                 super_print('PASS', lang, 'Blue')
@@ -172,7 +172,7 @@ def play(obj, word, max_points, result1, cities_list, cities_set, losers, have_w
                                         i.hearts-=1
                                         if i.hearts==0:
                                             print('-'*125)
-                                            super_print(f'[{i.name}]', lang, Fore.LIGHTYELLOW_EX)
+                                            super_print(f'[{i.name}]', lang, 'Light Yellow')
                                             super_print('You are eliminated from the game!!!', lang, 'Red')
                                             if losers==[]:
                                                 super_print('You don\'t get anything because you took the last place.', lang, 'Red')
@@ -180,7 +180,7 @@ def play(obj, word, max_points, result1, cities_list, cities_set, losers, have_w
                                             else:
                                                 super_print(['You received', i.points, 'points.'], lang, 'Light Blue')
                                             print('-'*125)
-                                            super_print(f'[{obj.name}]', lang, Fore.LIGHTYELLOW_EX)
+                                            super_print(f'[{obj.name}]', lang, 'Light Yellow')
                                             i.out=True
                                             losers.append(i.name)
                                         obj.blaster=False
@@ -347,8 +347,8 @@ def mode_party(name, cities_list, base, lang):
             winner=spisok[0][2]
             winner.points+=max_points
             if winner.blaster==True and winner.replacement==True and winner.game_pass==True:
-                super_print(f'[{winner.name}]', lang, Fore.LIGHTYELLOW_EX)
-                super_print('Since you didn\'t use any abilities, you get double points', lang, 'Green')
+                super_print(f'[{winner.name}]', lang, 'Light Yellow')
+                super_print('Since you didn\'t use any abilities, you get double points.', lang, 'Green')
                 winner.points*=2
                 print('-'*125)
             if game_count==2:

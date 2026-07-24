@@ -34,27 +34,9 @@ while True:
             the_cities_game(base, data)
             clear_screen()
         case 'Settings':
-            clear_screen()
-            while True:
-                super_print(['Name:', data['name']], lang)
-                super_print(['Language:', data['language']], lang)
-                change=super_input('Do you want to change parameters (Enter \"Name\" or \"Language\")?: ', lang)
-                change=new_word(change, lang)
-                match change:
-                    case 'Name':
-                        name=enter_name(data, base, lang)
-                        clear_screen()
-                    case 'Language':
-                        lang=enter_lang(data)
-                        clear_screen()
-                    case _:
-                        break
-            clear_screen()
+            name, lang=settings(data, base, name, lang)
         case 'Exit':
-            clear_screen()
-            exit_confirm=super_input('Do you want to exit (\"Yes\" or \"No\")?: ', lang)
-            exit_confirm=new_word(exit_confirm, lang)
-            if exit_confirm=='No':
+            if exit_to_game(lang)=='No':
                 clear_screen()
             else:
                 super_print('Goodbye!!!', lang)

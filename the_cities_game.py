@@ -9,11 +9,7 @@ def the_cities_game(base, data):
         cities_list=data['cities']
 
         super_print(['The Cities Game', ' ', '🏙️'], lang, 'Cyan')
-        super_print('Game      Rules      Highscores      Exit', lang, 'Cyan')
-        mode=super_input('Choose a game mode: ', lang, 'Cyan')
-        mode=new_word(mode, lang)
-        clear_screen()
-        match mode:
+        match choose_mode(lang):
             case 'Game':
                 while True:
                     super_print('Infinity          Party', lang, 'Light Cyan')
@@ -29,9 +25,7 @@ def the_cities_game(base, data):
                     mode_party(name, cities_list, base, lang)       
                 else:
                     mode_infinity(name, cities_list, base, lang)
-
-                end=super_input('Enter to exit mode: ', lang)
-                clear_screen()
+                exit_to_mode(lang)
     
             case 'Rules':
                 if lang=='ru':
@@ -39,13 +33,11 @@ def the_cities_game(base, data):
                 else:
                     rules=pyread('en_rules_tcg.txt')
                 super_print(rules, lang)
-                end=super_input('Enter to exit mode: ', lang)
-                clear_screen()
+                exit_to_mode(lang)
 
             case 'Highscores':
                 draw_leaderboard(base, lang)
-                end=super_input('Enter to exit mode: ', lang)
-                clear_screen()
+                exit_to_mode(lang)
 
             case 'Exit':
                 break

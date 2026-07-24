@@ -106,3 +106,39 @@ def new_word(word, lang):
     if lang=='ru':
         word=translator(word, 'en1')
     return word
+
+def settings(data, base, name, lang):
+    clear_screen()
+    while True:
+        super_print(['Name:', data['name']], lang)
+        super_print(['Language:', data['language']], lang)
+        change=super_input('Do you want to change parameters (Enter \"Name\" or \"Language\")?: ', lang)
+        change=new_word(change, lang)
+        match change:
+            case 'Name':
+                name=enter_name(data, base, lang)
+                clear_screen()
+            case 'Language':
+                lang=enter_lang(data)
+                clear_screen()
+            case _:
+                break
+    clear_screen()
+    return name, lang
+
+def choose_mode(lang):
+    super_print('Game      Rules      Highscores      Exit', lang, 'Cyan')
+    mode=super_input('Choose a game mode: ', lang, 'Cyan')
+    mode=new_word(mode, lang)
+    clear_screen()
+    return mode
+
+def exit_to_mode(lang):
+    end=super_input('Enter to exit mode: ', lang)
+    clear_screen()
+
+def exit_to_game(lang):
+    clear_screen()
+    exit_confirm=super_input('Do you want to exit (\"Yes\" or \"No\")?: ', lang)
+    exit_confirm=new_word(exit_confirm, lang)
+    return exit_confirm
