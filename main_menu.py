@@ -1,6 +1,7 @@
 from translator import *
 from common_utils import *
 from the_cities_game import *
+from rsp import *
 from time import sleep
 from colorama import init, Style
 
@@ -21,17 +22,21 @@ if name=='':
     clear_screen()
 
 while True:
+    return_cursor()
     super_print('COLLECTION OF TERMINAL GAMES', lang, 'White', Style.BRIGHT)
     super_print(['Creator: Abdyrahym Begenjov', 10*' ','(GitHub: abdyrahym-begenjov)'], lang)
-    super_print(['The Cities Game', 6*' ', 'Settings', 6*' ','Exit'], lang)
+    super_print(['The Cities Game', 6*' ', 'Rock, Scissors, Paper'], lang)
+    super_print(['Settings', 6*' ','Exit'], lang)
     choose_game=super_input('Choose a game or parameter: ', lang)
     choose_game=new_word(choose_game, lang)
     match choose_game:
         case 'The Cities Game':
-            super_print('Loading...', lang)
-            sleep(2)
-            clear_screen()
+            func_loading(lang)
             the_cities_game(base, data)
+            clear_screen()
+        case 'Rock, Scissors, Paper':
+            func_loading(lang)
+            rsp(base, data)
             clear_screen()
         case 'Settings':
             name, lang=settings(data, base, name, lang)

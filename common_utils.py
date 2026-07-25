@@ -3,6 +3,8 @@ from subprocess import run
 from platform import system
 from json import load, dump
 from colorama import Fore, Style
+import sys
+from time import sleep
 
 colors={
     'White': Fore.WHITE,
@@ -17,6 +19,21 @@ colors={
     'Green': Fore.GREEN,
     'Magenta': Fore.MAGENTA
 }
+
+def delete_cursor():
+    sys.stdout.write("\x1b[?25l")
+    sys.stdout.flush()
+
+def return_cursor():
+    sys.stdout.write("\x1b[?25h")
+    sys.stdout.flush()
+
+def func_loading(lang):
+    delete_cursor()
+    super_print('Loading...', lang)
+    sleep(2)
+    clear_screen()
+    return_cursor()
 
 def pyread(filename):
     match filename:
@@ -98,6 +115,7 @@ def enter_name(data, base, lang):
             pywrite('data.json', data)
             if name not in base['The Cities Game']:
                 base['The Cities Game'][name]=[0, 0]
+                base['Rock, Scissors, Paper'][name]=[0, 0]
                 pywrite('base.json', base)
             return name
 

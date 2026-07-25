@@ -80,7 +80,18 @@ rutranslate={
     'REPLACEMENT  🦝': 'ЗАМЕНА  🦝',
     'There are no suitable cities!!!': 'Подходящих городов нет!!!',
     'You don\'t get anything because you took the last place.': 'Вы ничего не получаете, т.к вы заняли последнее место.',
-    'Since you didn\'t use any abilities, you get double points.': 'Поскольку вы не использовали никаких способностей, вы получаете двойные очки.'
+    'Since you didn\'t use any abilities, you get double points.': 'Поскольку вы не использовали никаких способностей, вы получаете двойные очки.',
+    'Rock, Scissors, Paper': 'Камень, Ножницы, Бумага',
+    'How many wins are we playing to?: ': 'До скольких побед играем?: ',
+    'Rock': 'Камень',
+    'Scissors': 'Ножницы',
+    'Paper': 'Бумага',
+    'Computer': 'Компьютер',
+    'User': 'Пользователь',
+    'Computer wins': 'Компьютер побеждает',
+    'VICTORIES': 'ПОБЕДЫ',
+    'DEFEATS': 'ПОРАЖЕНИЯ',
+    'The number must not be less than or equal to zero!!!': 'Число не должно быть меньше или равной нулю!!!'
              }
 
 
