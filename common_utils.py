@@ -11,11 +11,10 @@ colors={
     'Red': Fore.RED,
     'Light Red': Fore.LIGHTRED_EX,
     'Cyan': Fore.CYAN,
-    'Light Cyan': Fore.LIGHTCYAN_EX,
+    'Dark Grey': Fore.LIGHTBLACK_EX,
     'Blue': Fore.BLUE,
     'Light Blue': Fore.LIGHTBLUE_EX,
-    'Yellow': Fore.YELLOW,
-    'Light Yellow': Fore.LIGHTYELLOW_EX,
+    'Yellow': Fore.LIGHTYELLOW_EX,
     'Green': Fore.GREEN,
     'Magenta': Fore.MAGENTA
 }

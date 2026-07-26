@@ -5,7 +5,7 @@ from time import sleep
 
 def game(p, lst1, base, lang):
     while True:
-        name=super_input([f'[{p[0]}]', 'Enter name: '], lang, 'Light Yellow')
+        name=super_input([f'[{p[0]}]', 'Enter name: '], lang, 'Yellow')
         name=name.strip()
         if name=='':
             super_print('Error!!!', lang, 'Red')
@@ -16,6 +16,7 @@ def game(p, lst1, base, lang):
         else:
             if name not in base['The Cities Game']:
                 base['The Cities Game'][name]=[0, 0]
+                base['Rock, Scissors, Paper'][name]=[0, 0]
             p.pop(0)
             break
     return name
@@ -35,7 +36,9 @@ def selection_of_order(lst1, game_count, lang, Player):
             else:
                 r.append(i)
         if r==[]:
-            super_print('Moment of Truth  🥁', lang, 'Light Cyan')
+            delete_cursor()
+            super_print('Moment of Truth  🥁', lang, 'Dark Grey')
+            return_cursor()
             match game_count:
                 case 2:
                     sleep(2)
@@ -57,8 +60,8 @@ def selection_of_order(lst1, game_count, lang, Player):
 
 def choose_parameter(lang):
     while True:
-        super_print('Parameters of game: Easy (10), Normal (20), Hard (30)', lang, 'Light Cyan')
-        parameter=super_input('Enter the parameter of game: ', lang, 'Light Cyan')
+        super_print('Parameters of game: Easy (10), Normal (20), Hard (30)', lang, 'Dark Grey')
+        parameter=super_input('Enter the parameter of game: ', lang, 'Dark Grey')
         parameter=new_word(parameter, lang)
         match parameter:
             case 'Easy':
@@ -140,7 +143,7 @@ class Player:
 
 def play(obj, word, max_points, result1, cities_list, cities_set, losers, have_winner, lang):
     if obj.out==False:
-        super_print(f'[{obj.name}]', lang, 'Light Yellow')
+        super_print(f'[{obj.name}]', lang, 'Yellow')
         while True:
             if obj.gp==True:
                 super_print('PASS', lang, 'Blue')
@@ -172,7 +175,7 @@ def play(obj, word, max_points, result1, cities_list, cities_set, losers, have_w
                                         i.hearts-=1
                                         if i.hearts==0:
                                             print('-'*125)
-                                            super_print(f'[{i.name}]', lang, 'Light Yellow')
+                                            super_print(f'[{i.name}]', lang, 'Yellow')
                                             super_print('You are eliminated from the game!!!', lang, 'Red')
                                             if losers==[]:
                                                 super_print('You don\'t get anything because you took the last place.', lang, 'Red')
@@ -180,7 +183,7 @@ def play(obj, word, max_points, result1, cities_list, cities_set, losers, have_w
                                             else:
                                                 super_print(['You received', i.points, 'points.'], lang, 'Light Blue')
                                             print('-'*125)
-                                            super_print(f'[{obj.name}]', lang, 'Light Yellow')
+                                            super_print(f'[{obj.name}]', lang, 'Yellow')
                                             i.out=True
                                             losers.append(i.name)
                                         obj.blaster=False
@@ -247,8 +250,10 @@ def play(obj, word, max_points, result1, cities_list, cities_set, losers, have_w
     return spisok2_result
 
 def mode_infinity(name, cities_list, base, lang):
-    start=super_input('Enter to start game: ', lang, 'Light Cyan')
-    super_print('Loading...', lang, 'Light Cyan')
+    start=super_input('Enter to start game: ', lang, 'Dark Grey')
+    delete_cursor()
+    super_print('Loading...', lang, 'Dark Grey')
+    return_cursor()
     sleep(2)
     clear_screen()
 
@@ -300,7 +305,7 @@ def mode_party(name, cities_list, base, lang):
     p=[translator('Player 2', lang), translator('Player 3', lang), translator('Player 4', lang)]
     lst1=[name]
     while True:
-        game_count=super_input('Enter number of the players: ', lang, 'Light Cyan')
+        game_count=super_input('Enter number of the players: ', lang, 'Dark Grey')
         if game_count in ('2', '3', '4'):
             try:
                 game_count=int(game_count)
@@ -318,10 +323,10 @@ def mode_party(name, cities_list, base, lang):
                 
     result1, new_lst=selection_of_order(lst1, game_count, lang, Player)
     for n, i in enumerate(result1, 1):
-        super_print(f'{n}) {i.name}', lang, 'Light Cyan')
+        super_print(f'{n}) {i.name}', lang, 'Dark Grey')
                 
-    start=super_input('Enter to start game: ', lang, 'Light Cyan')
-    super_print('Loading...', lang, 'Light Cyan')
+    start=super_input('Enter to start game: ', lang, 'Dark Grey')
+    super_print('Loading...', lang, 'Dark Grey')
     sleep(2)
     clear_screen()
 
@@ -347,7 +352,7 @@ def mode_party(name, cities_list, base, lang):
             winner=spisok[0][2]
             winner.points+=max_points
             if winner.blaster==True and winner.replacement==True and winner.game_pass==True:
-                super_print(f'[{winner.name}]', lang, 'Light Yellow')
+                super_print(f'[{winner.name}]', lang, 'Yellow')
                 super_print('Since you didn\'t use any abilities, you get double points.', lang, 'Green')
                 winner.points*=2
                 print('-'*125)

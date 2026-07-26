@@ -25,8 +25,10 @@ while True:
     return_cursor()
     super_print('COLLECTION OF TERMINAL GAMES', lang, 'White', Style.BRIGHT)
     super_print(['Creator: Abdyrahym Begenjov', 10*' ','(GitHub: abdyrahym-begenjov)'], lang)
-    super_print(['The Cities Game', 6*' ', 'Rock, Scissors, Paper'], lang)
-    super_print(['Settings', 6*' ','Exit'], lang)
+    super_print('The Cities Game', lang)
+    super_print('Rock, Scissors, Paper', lang)
+    super_print('Settings', lang)
+    super_print('Exit', lang)
     choose_game=super_input('Choose a game or parameter: ', lang)
     choose_game=new_word(choose_game, lang)
     match choose_game:
@@ -34,12 +36,15 @@ while True:
             func_loading(lang)
             the_cities_game(base, data)
             clear_screen()
+
         case 'Rock, Scissors, Paper':
             func_loading(lang)
             rsp(base, data)
             clear_screen()
+            
         case 'Settings':
             name, lang=settings(data, base, name, lang)
+            
         case 'Exit':
             if exit_to_game(lang)=='No':
                 clear_screen()

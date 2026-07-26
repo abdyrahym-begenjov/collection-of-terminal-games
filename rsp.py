@@ -17,26 +17,21 @@ def rsp(base, data):
         clear_screen()
 
     while True:
-        print(translator('Rock, Scissors, Paper', lang))
-        print(f'{translator('Creator: Abdyrahym Begenjov', lang)}     (GitHub: abdyrahym-begenjov)')
-        print(translator('Game      Rules      Highscores      Exit', lang))
-        mode=input(translator('Choose a game mode: ', lang))
-        mode=new_word(mode, lang)
-        clear_screen()
-        match mode:
+        super_print('Rock, Scissors, Paper', lang, 'Cyan')
+        match choose_mode(lang):
             case 'Game':
                 while True:
-                    num=input(translator('How many wins are we playing to?: ', lang))
+                    num=super_input('How many wins are we playing to?: ', lang, 'Dark Grey')
                     try:
                         num=int(num)
                         if num<=0:
-                            print(translator('The number must not be less than or equal to zero!!!', lang))
+                            super_print('The number must not be less than or equal to zero!!!', lang, 'Red')
                         else:
                             break
                     except ValueError:
-                        print(translator('Error!!!', lang))
+                        super_print('Error!!!', lang, 'Red')
 
-                print(translator('Loading...', lang))
+                super_print('Loading...', lang, 'Dark Grey')
                 sleep(2)
                 clear_screen()
 
@@ -57,46 +52,35 @@ def rsp(base, data):
                         case ('Rock', 'Rock') | ('Paper', 'Paper') | ('Scissors', 'Scissors'):
                             pass
                         case _:
-                            print(translator('Error!!!', lang))
+                            super_print('Error!!!', lang, 'Red')
                             continue
                     print(f'{translator('Computer', lang)}: {translator(computer, lang)}')
                     print(f'{translator('User', lang)}: {up}      {translator('Computer', lang)}: {cp}')
                     if cp==num:
-                        print(translator('Computer wins', lang))
-                        print(translator('Game Over!!!', lang))
+                        super_print('Computer wins', lang, 'Red')
+                        super_print('Game Over!!!', lang, 'Red')
                         base['Rock, Scissors, Paper'][name][1]+=num
                         break
                     elif up==num:
-                        print(translator('You win!!!', lang))
+                        super_print('You win!!!', lang, 'Green')
                         base['Rock, Scissors, Paper'][name][0]+=num
                         break
                 pywrite('base.json', base)
-
-                end=input(translator('Enter to exit mode: ', lang))
-                clear_screen()
+                exit_to_mode(lang)
 
             case 'Rules':
                 if lang=='ru':
                     rules=pyread('ru_rules_rsp.txt')
                 else:
                     rules=pyread('en_rules_rsp.txt')
-                print(rules)
-                end=input(translator('Enter to exit mode: ', lang))
-                clear_screen()
+                super_print(rules, lang)
+                exit_to_mode(lang)
 
             case 'Highscores':
                 draw_leaderboard(base, lang)
-                end=input(translator('Enter to exit mode: ', lang))
-                clear_screen()
+                exit_to_mode(lang)
 
             case 'Exit':
-                exit_confirm=input(translator('Do you want to exit (\"Yes\" or \"No\")?: ', lang))
-                exit_confirm=new_word(exit_confirm, lang)
-                if exit_confirm=='No':
-                    clear_screen()
-                else:
-                    print(translator('Goodbye!!!', lang))
-                    input(translator('Enter to exit: ', lang))
-                    break
+                break
             case _:
                 clear_screen()

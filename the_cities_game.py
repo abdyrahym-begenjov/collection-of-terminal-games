@@ -12,8 +12,8 @@ def the_cities_game(base, data):
         match choose_mode(lang):
             case 'Game':
                 while True:
-                    super_print('Infinity          Party', lang, 'Light Cyan')
-                    mode_game=super_input('Choose a game mode: ', lang, 'Light Cyan')
+                    super_print('Infinity          Party', lang, 'Dark Grey')
+                    mode_game=super_input('Choose a game mode: ', lang, 'Dark Grey')
                     mode_game=new_word(mode_game, lang)
                     if mode_game=='Infinity' or mode_game=='Party':
                         break
