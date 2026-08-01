@@ -323,7 +323,7 @@ def mode_party(name, cities_list, base, lang):
                 
     result1, new_lst=selection_of_order(lst1, game_count, lang, Player)
     for n, i in enumerate(result1, 1):
-        super_print(f'{n}) {i.name}', lang, 'Dark Grey')
+        super_print(f'{n}) {i.name}', lang)
                 
     start=super_input('Enter to start game: ', lang, 'Dark Grey')
     super_print('Loading...', lang, 'Dark Grey')

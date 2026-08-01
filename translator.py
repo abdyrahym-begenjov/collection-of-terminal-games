@@ -2,7 +2,7 @@ rutranslate={
     'The Cities Game': 'Города',
     'COLLECTION OF TERMINAL GAMES': 'КОЛЛЕКЦИЯ ТЕРМИНАЛЬНЫХ ИГР',
     'Choose a game or parameter: ': 'Выберите игру или параметр: ',
-    'Enter the word:': 'Введите слово:',
+    'Enter the word: ': 'Введите слово: ',
     'Error!!!': 'Ошибка!!!',
     'Game Over!!!': 'Игра окончена!!!',
     'This word has already been used!!!': 'Это слово уже было использовано!!!',
@@ -86,11 +86,13 @@ rutranslate={
     'Rock': 'Камень',
     'Scissors': 'Ножницы',
     'Paper': 'Бумага',
-    'Computer': 'Компьютер',
-    'User': 'Пользователь',
+    'Computer:': 'Компьютер:',
+    'User:': 'Пользователь:',
+    'Game Over!!!': 'Игра окончена!!!',
+    'You win!!!': 'Вы победили!!!',
     'Computer wins': 'Компьютер побеждает',
-    'VICTORIES': 'ПОБЕДЫ',
-    'DEFEATS': 'ПОРАЖЕНИЯ',
+    'Victories': 'Победы',
+    'Defeats': 'Поражения',
     'The number must not be less than or equal to zero!!!': 'Число не должно быть меньше или равной нулю!!!'
              }
 

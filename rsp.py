@@ -40,7 +40,7 @@ def rsp(base, data):
                 cp=0
 
                 while True:
-                    user=input(f'{translator('Enter the word: ', lang)}')
+                    user=super_input('Enter the word: ', lang)
                     user=new_word(user, lang)
                     computer=choice(words)
                     computer=new_word(computer, lang)
@@ -54,8 +54,8 @@ def rsp(base, data):
                         case _:
                             super_print('Error!!!', lang, 'Red')
                             continue
-                    print(f'{translator('Computer', lang)}: {translator(computer, lang)}')
-                    print(f'{translator('User', lang)}: {up}      {translator('Computer', lang)}: {cp}')
+                    super_print(['Computer:', computer], lang, 'Dark Grey')
+                    super_print(['User:', up, 5*' ', 'Computer:', cp], lang, 'Light Blue')
                     if cp==num:
                         super_print('Computer wins', lang, 'Red')
                         super_print('Game Over!!!', lang, 'Red')
