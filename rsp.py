@@ -8,14 +8,6 @@ def rsp(base, data):
     name=data['name']
     lang=data['language']
 
-    if lang=='':
-        lang=enter_lang(data)
-        clear_screen()
-
-    if name=='':
-        name=enter_name(data, base, lang)
-        clear_screen()
-
     while True:
         super_print('Rock, Scissors, Paper', lang, 'Cyan')
         match choose_mode(lang):

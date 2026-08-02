@@ -93,7 +93,12 @@ rutranslate={
     'Computer wins': 'Компьютер побеждает',
     'Victories': 'Победы',
     'Defeats': 'Поражения',
-    'The number must not be less than or equal to zero!!!': 'Число не должно быть меньше или равной нулю!!!'
+    'The number must not be less than or equal to zero!!!': 'Число не должно быть меньше или равной нулю!!!',
+    'Regular word:': 'Правильное слово:',
+    'Enter a letter: ': 'Введите букву: ',
+    'Hangman': 'Виселица',
+    'This letter is already in the hidden word.': 'Эта буква уже есть в загаданном слове.',
+    'You must enter the letter!!!': 'Вы должны ввести букву!!!'
              }
 
 

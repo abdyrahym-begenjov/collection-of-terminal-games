@@ -2,6 +2,7 @@ from translator import *
 from common_utils import *
 from the_cities_game import *
 from rsp import *
+from hangman import *
 from time import sleep
 from colorama import init, Style
 
@@ -27,6 +28,7 @@ while True:
     super_print(['Creator: Abdyrahym Begenjov', 10*' ','(GitHub: abdyrahym-begenjov)'], lang)
     super_print('The Cities Game', lang)
     super_print('Rock, Scissors, Paper', lang)
+    super_print('Hangman', lang)
     super_print('Settings', lang)
     super_print('Exit', lang)
     choose_game=super_input('Choose a game or parameter: ', lang)
@@ -40,6 +42,11 @@ while True:
         case 'Rock, Scissors, Paper':
             func_loading(lang)
             rsp(base, data)
+            clear_screen()
+        
+        case 'Hangman':
+            func_loading(lang)
+            hangman(base, data)
             clear_screen()
             
         case 'Settings':

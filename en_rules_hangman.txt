@@ -1,0 +1,51 @@
+============================================================
+             🕹️  HANGMAN GAME — GAME RULES  📯
+============================================================
+
+Welcome to the classic game of Hangman! Test your vocabulary 
+and save the stickman before it is too late.
+
+------------------------------------------------------------
+🎮  HOW TO PLAY
+------------------------------------------------------------
+1. Start the game and choose "Game" from the main menu.
+2. The computer will randomly select a secret word and 
+display it as a row of blank underscores (_).
+3. Guess one letter at a time to uncover the hidden word.
+
+------------------------------------------------------------
+❌ THE RULES OF GUESSING & ERRORS
+------------------------------------------------------------
+• ✅  Correct Guess: If the letter is in the word, it will 
+  reveal its correct position(s).
+• ❌  Incorrect Guess: If the letter is not in the word, it 
+  is an error. An extra part of the gallows/hangman will be 
+  drawn.
+• 🙂  If the entered letter is already in the word, entered 
+  more than one letter or you press Enter without entering 
+  the letter - this is not considered an error!
+
+------------------------------------------------------------
+🏆  WINNING & LOSING
+------------------------------------------------------------
+• 🎉  You Win: Correctly guess all the letters to reveal the 
+  complete word before the drawing is finished.
+• 💀  Game Over: Accumulating 10 total errors completes the 
+  drawing, resulting in a defeat and revealing the secret 
+  word.
+
+------------------------------------------------------------
+📊  GAME MODES & MENUS
+------------------------------------------------------------
+• Game: Launch a new puzzle and try to solve the hidden word.
+• Rules: The mode provides players with a quick guide to the 
+  game's mechanics, winning conditions, and menu navigation.
+• Highscores: Check your lifetime wins versus the computer's 
+  wins sorted by round types.
+• Settings: Update your player Name or switch the game 
+  Language and word banks.
+• Exit: Safely close the game application.
+
+============================================================
+     🍀  THINK CAREFULLY AND GOOD LUCK SAVING HIM!  🍀
+============================================================

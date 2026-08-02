@@ -29,7 +29,7 @@ def return_cursor():
 
 def func_loading(lang):
     delete_cursor()
-    super_print('Loading...', lang)
+    super_print('Loading...', lang, 'Dark Grey')
     sleep(2)
     clear_screen()
     return_cursor()
@@ -86,15 +86,18 @@ def enter_lang(data):
             case 'Русский':
                 lang='ru'
                 cities_list=pyread('goroda.json')
+                words_list=pyread('russian_words.json')
                 break
             case 'English':
                 lang='en'
                 cities_list=pyread('cities.json')
+                words_list=pyread('words.json')
                 break
             case _:
                 clear_screen()
     data['language']=lang
     data['cities']=cities_list
+    data['words']=words_list
     pywrite('data.json', data)
     return lang
 
@@ -115,6 +118,7 @@ def enter_name(data, base, lang):
             if name not in base['The Cities Game']:
                 base['The Cities Game'][name]=[0, 0]
                 base['Rock, Scissors, Paper'][name]=[0, 0]
+                base['Hangman'][name]=[0, 0]
                 pywrite('base.json', base)
             return name
 
