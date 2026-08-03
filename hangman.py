@@ -9,7 +9,7 @@ def hangman(base, data):
         lang=data['language']
         words_list=data['words']
     
-        super_print('Hangman', lang, 'Cyan')
+        super_print(['Hangman', ' ', '🧣'], lang, 'Cyan')
         match choose_mode(lang):
             case 'Game':
                 start=super_input('Enter to start game: ', lang, 'Dark Grey')

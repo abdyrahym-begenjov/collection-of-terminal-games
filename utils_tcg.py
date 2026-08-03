@@ -251,11 +251,7 @@ def play(obj, word, max_points, result1, cities_list, cities_set, losers, have_w
 
 def mode_infinity(name, cities_list, base, lang):
     start=super_input('Enter to start game: ', lang, 'Dark Grey')
-    delete_cursor()
-    super_print('Loading...', lang, 'Dark Grey')
-    return_cursor()
-    sleep(2)
-    clear_screen()
+    func_loading(lang)
 
     word=choice(cities_list)
     hearts=3
@@ -326,9 +322,7 @@ def mode_party(name, cities_list, base, lang):
         super_print(f'{n}) {i.name}', lang)
                 
     start=super_input('Enter to start game: ', lang, 'Dark Grey')
-    super_print('Loading...', lang, 'Dark Grey')
-    sleep(2)
-    clear_screen()
+    func_loading(lang)
 
     final=False
     city=choice(cities_list)

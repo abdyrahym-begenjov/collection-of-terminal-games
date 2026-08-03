@@ -9,7 +9,7 @@ def rsp(base, data):
     lang=data['language']
 
     while True:
-        super_print('Rock, Scissors, Paper', lang, 'Cyan')
+        super_print(['Rock, Scissors, Paper', ' ', '🪨  ✂️  📄'], lang, 'Cyan')
         match choose_mode(lang):
             case 'Game':
                 while True:
@@ -23,9 +23,7 @@ def rsp(base, data):
                     except ValueError:
                         super_print('Error!!!', lang, 'Red')
 
-                super_print('Loading...', lang, 'Dark Grey')
-                sleep(2)
-                clear_screen()
+                func_loading(lang)
 
                 words=[translator('Rock', lang), translator('Scissors', lang), translator('Paper', lang)]
                 up=0
@@ -48,6 +46,7 @@ def rsp(base, data):
                             continue
                     super_print(['Computer:', computer], lang, 'Dark Grey')
                     super_print(['User:', up, 5*' ', 'Computer:', cp], lang, 'Light Blue')
+                    print('-'*125)
                     if cp==num:
                         super_print('Computer wins', lang, 'Red')
                         super_print('Game Over!!!', lang, 'Red')
