@@ -81,6 +81,8 @@ rutranslate={
     'There are no suitable cities!!!': 'Подходящих городов нет!!!',
     'You don\'t get anything because you took the last place.': 'Вы ничего не получаете, т.к вы заняли последнее место.',
     'Since you didn\'t use any abilities, you get double points.': 'Поскольку вы не использовали никаких способностей, вы получаете двойные очки.',
+    'You all lost because none of you scored any points.': '',
+    'Since you all scored the same points above zero, a draw is declared and everyone gets points.': 'Вы все проиграли, т.к никто из вас не набрал никаких баллов.',
     'Rock, Scissors, Paper': 'Камень, Ножницы, Бумага',
     'How many wins are we playing to?: ': 'До скольких побед играем?: ',
     'Rock': 'Камень',

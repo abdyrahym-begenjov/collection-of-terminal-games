@@ -136,12 +136,13 @@ class Player:
         self.hearts=3
         self.points=0
         self.out=False
+        self.laps=0
         self.blaster=True
         self.game_pass=True
         self.replacement=True
         self.gp=False
 
-def play(obj, word, max_points, result1, cities_list, cities_set, losers, have_winner, lang):
+def play(obj, word, max_points, result1, cities_list, cities_set, losers, have_winner, lang, new_lst):
     if obj.out==False:
         super_print(f'[{obj.name}]', lang, 'Yellow')
         while True:
@@ -234,6 +235,7 @@ def play(obj, word, max_points, result1, cities_list, cities_set, losers, have_w
         if obj.points>=max_points:
             super_print('You have received the maximum points.', lang, 'Green')
             super_print('You are WINNER!!!', lang, 'Green')
+            have_winner=True
         if obj.hearts<=0:
             super_print('You are eliminated from the game!!!', lang, 'Light Red')
             if losers==[]:
@@ -243,10 +245,12 @@ def play(obj, word, max_points, result1, cities_list, cities_set, losers, have_w
                 super_print(['You received', obj.points, 'points.'], lang, 'Light Blue')
             obj.out=True
             losers.append(obj.name)
+            new_lst.append(new_lst.pop(new_lst.index(obj.name)))
         print('-'*125)
-        spisok2_result=(obj.points, obj.out, obj.hearts, word, cities_set, losers, have_winner)
+        obj.laps+=1
+        spisok2_result=(obj.points, obj.out, obj.hearts, obj.laps, word, cities_set, losers, have_winner)
     else:
-        spisok2_result=(obj.points, obj.out, obj.hearts, word, cities_set, losers, have_winner)
+        spisok2_result=(obj.points, obj.out, obj.hearts, obj.laps, word, cities_set, losers, have_winner)
     return spisok2_result
 
 def mode_infinity(name, cities_list, base, lang):
@@ -332,17 +336,22 @@ def mode_party(name, cities_list, base, lang):
 
     while True:
         for player in result1:
-            player.points, player.out, player.hearts, city, cities_set, losers, have_winner=play(player, city, max_points, result1, cities_list, cities_set, losers, have_winner, lang)
+            player.points, player.out, player.hearts, player.laps, city, cities_set, losers, have_winner=play(player, city, max_points, result1, cities_list, cities_set, losers, have_winner, lang, new_lst)
             if have_winner==True:
                 final=have_winner
                 break
         spisok=[]
         for player in result1:
-            spisok.append((player.name, player.points, player))
-        spisok.sort(key=lambda x: (x[1], new_lst.index(x[0])), reverse=True)
+            spisok.append((player.name, player.points, player, player.out, player.laps))
+        spisok.sort(key=lambda x: (x[1], x[-2], x[-1], new_lst.index(x[0])), reverse=True)
         spisok1=[i[0] for i in spisok]
         spisok2=[i[1] for i in spisok]
-        if final==True or len(losers)==game_count-1:
+        if final==True or len(losers)>=game_count-1:
+            if all(i==0 for i in spisok2):
+                super_print('You all lost because none of you scored any points.', lang, 'Red')
+                print('😭'*game_count)
+                print('-'*125)
+                break
             winner=spisok[0][2]
             winner.points+=max_points
             if winner.blaster==True and winner.replacement==True and winner.game_pass==True:
