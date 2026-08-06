@@ -1,0 +1,128 @@
+=================================================================================
+            🐍  SNAKES AND LADDERS - FULL OFFICIAL GAME RULES  🪜
+=================================================================================
+
+"Snakes and Ladders" is a turn-based, competitive board game designed for 2 to 4 
+players. Inspired by the classic Snakes and Ladders concept, this version introduces 
+unique tactical abilities for human players to alter the course of the game. The 
+goal is to navigate your character token from tile 0 to the exact target tile 
+dictated by the chosen difficulty level. The game supports local multiplayer where 
+you can play against other humans or automated computer opponents.
+
+Important Note: COMPUTER bots are not AI. They are basic, automated player profiles 
+governed by simple random number generation scripts and do not strategically use 
+any tactical abilities.
+
+---------------------------------------------------------------------------------
+⚙️  MAIN MENU AND SYSTEM MODES
+---------------------------------------------------------------------------------
+When you launch the game, you can navigate through the following system modes:
+* Game: Launches the configuration setup to start a live match.
+* Rules: The mode provides players with a quick guide to the game's mechanics, 
+  winning conditions, and menu navigation.
+* Highscores: Displays a persistent scoreboard containing all registered players 
+  and their cumulative points saved across matches, sorted from highest to lowest.
+* Settings: Allows you to switch the active interface language from
+  English to Russian at any time and change the name for the permanent first player.
+* Exit: Safely closes the game application after a confirmation prompt.
+
+---------------------------------------------------------------------------------
+🎲  MATCH SETUP AND TURN ORDER
+---------------------------------------------------------------------------------
+* Player Selection: You can choose to play with 2, 3, or 4 players. "Player 1" 
+- this is always a regular player-a person whose name is written in the settings. 
+For the remaining slots, you can input names for other human players. Leaving a 
+name prompt completely blank automatically fills that slot with an automated bot 
+(e.g., `COMPUTER1`, `COMPUTER2`, etc.). New player names are automatically 
+registered into the leaderboard system. You cannot use names that are already 
+registered in the list of players.
+* The Moment of Truth (Turn Order): Before movement begins, all players roll a 
+single 6-sided dice simultaneously. The game ranks players in descending order 
+based on their rolls to determine the final turn sequence. If any players roll 
+matching numbers, the tie-breaker triggers an automatic re-roll for everyone until 
+all initial rolls are completely unique.
+
+---------------------------------------------------------------------------------
+🕹️  GAME PARAMETERS (DIFFICULTIES AND BOARD SIZES)
+---------------------------------------------------------------------------------
+At the start of a match, players select a game parameter which determines the 
+layout of obstacles and the exact winning tile:
+* Easy Mode (Target: Tile 50)
+ 		Standard Snakes: Tiles 13 and 31
+ 		Long Snakes: Tile 47
+ 		Standard Ladders: Tiles 8 and 38
+ 		Long Ladders: Tile 22
+
+* Normal Mode (Target: Tile 75)
+ 		Standard Snakes: Tiles 25, 36, and 49
+ 		Long Snakes: Tiles 73 and 68
+ 		Standard Ladders: Tiles 20, 38, and 57
+ 		Long Ladders: Tiles 3 and 12
+
+* Hard Mode (Target: Tile 100)
+ 		Standard Snakes: Tiles 24, 64, 63, and 62
+ 		Long Snakes: Tiles 13, 49, and 80
+ 		Dangerous Snake: Tile 95
+ 		Standard Ladders: Tiles 4, 32, 70, and 61
+ 		Long Ladders: Tiles 15, 55, and 87
+
+---------------------------------------------------------------------------------
+🎮  CORE MOVEMENT AND BOARD OBSTACLES
+---------------------------------------------------------------------------------
+On your turn, a standard 6-sided dice is rolled (generating a value from 1 to 6) 
+to advance your token. Automated bots roll immediately, while human players have 
+the option to input special commands before rolling. Landing on a tile with an 
+obstacle applies an instantaneous penalty or boost:
+	* Standard Ladders  🪜  : Moves your token forward by 6 additional tiles.
+	* Long Ladders  🪜🪜  : Moves your token forward by 12 additional tiles.
+	* Standard Snakes  🐍  : Slips your token backward by 6 tiles.
+	* Long Snakes  🐍🐍  : Slips your token backward by 12 tiles.
+	* Dangerous Snake  Dangerous 🐍  : Exclusive to Hard Mode, landing here 
+	inflicts a massive penalty, sending your token backward by 60 tiles.
+	* Exact Landing Rule: To claim a winning position, a player's final movement 
+	must land precisely on the target tile (50, 75, or 100). If a dice roll causes 
+	you to overshoot the target tile, the movement is completely invalidated, the 
+	game notifies you that the number is bigger than the parameter, and your token 
+	remains stationary on its original tile for that turn.
+
+---------------------------------------------------------------------------------
+⚡  SPECIAL TACTICAL ABILITIES (HUMAN PLAYERS ONLY)
+---------------------------------------------------------------------------------
+Every Human player begins a match equipped with a kit of 4 unique, single-use 
+abilities. Automated Computer bots cannot use abilities. Activating an ability 
+consumes it for the remainder of the match. Human players can activate the 
+following keywords on their turn:
+* 🌀  Teleport: Instantly swaps your current tile position with the tile position 
+of any chosen opponent. Using a teleportation consumes your turn and skips your 
+standard dice roll phase.
+* ✖️  Double: Doubling your roll ensures that whatever number you get on your 
+subsequent dice roll for that turn is multiplied by 2 (e.g., rolling a 4 advances 
+you 8 tiles).
+* 🚀  Rocket: Instantly propels your token forward by 10 tiles. This ability can 
+only be triggered if the 10-tile boost keeps you safely below the target winning 
+tile; it will refuse to activate if it causes you to reach or overshoot the final 
+parameter. After the rocket activates, you still proceed to roll your standard dice 
+for that turn.
+* 🧊  Ice: Freezes an opponent of your choice. On that targeted opponent's immediate 
+next turn, they are marked as "iced", meaning they are skipped entirely, unable to 
+move or use abilities. They automatically thaw out after their skipped turn concludes.
+
+---------------------------------------------------------------------------------
+📊  WINNING, PLACEMENTS, AND SCORING
+---------------------------------------------------------------------------------
+The match runs continuously until all top placements are decided and recorded:
+* Winning Conditions: Placements are locked in sequence as players cross the exact 
+target tile line. The game distributes titles in order: First Winner, Second Winner, 
+and Third Winner.
+* Base Points Allocation: 
+		1st Place: Earns 3 points.
+		2nd Place: Earns 2 points.
+		3rd Place: Earns 1 point.
+		4th Place: Earns 0 points.
+* No-Ability Multiplier Bonus: If a human player has not used up any of his 4 
+starting tactical abilities, he receives a double point bonus.
+* Match Termination: A 2-player match ends as soon as 1st place is decided. A 3-player 
+match ends when 1st and 2nd places are secured. A 4-player match ends once 1st, 
+2nd, and 3rd places are filled. All points earned are instantly saved to the base 
+profile for bragging rights on the Highscores leaderboard.
+=================================================================================

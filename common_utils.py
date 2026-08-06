@@ -3,7 +3,7 @@ from subprocess import run
 from platform import system
 from json import load, dump
 from colorama import Fore, Style
-import sys
+from sys import stdout
 from time import sleep
 
 colors={
@@ -20,12 +20,12 @@ colors={
 }
 
 def delete_cursor():
-    sys.stdout.write("\x1b[?25l")
-    sys.stdout.flush()
+    stdout.write("\x1b[?25l")
+    stdout.flush()
 
 def return_cursor():
-    sys.stdout.write("\x1b[?25h")
-    sys.stdout.flush()
+    stdout.write("\x1b[?25h")
+    stdout.flush()
 
 def func_loading(lang):
     delete_cursor()
@@ -119,6 +119,7 @@ def enter_name(data, base, lang):
                 base['The Cities Game'][name]=[0, 0]
                 base['Rock, Scissors, Paper'][name]=[0, 0]
                 base['Hangman'][name]=[0, 0]
+                base['Snakes and Ladders'][name]=0
                 pywrite('base.json', base)
             return name
 

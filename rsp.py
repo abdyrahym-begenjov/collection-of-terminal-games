@@ -1,5 +1,4 @@
 from random import choice
-from time import sleep
 from translator import *
 from common_utils import *
 from utils_rsp import *
