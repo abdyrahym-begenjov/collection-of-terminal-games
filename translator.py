@@ -104,6 +104,7 @@ rutranslate={
     'COMPUTER2': 'КОМПЬЮТЕР2',
     'COMPUTER3': 'КОМПЬЮТЕР3',
     'Snakes and Ladders': 'Змеи и Лестницы',
+    'Snakes And Ladders': 'Змеи И Лестницы',
     'Parameters of game: Easy (50), Normal (75), Hard (100)': 'Параметры игры: Лёгкий (50), Нормальный (75), Сложный (100)',
     'Enter: ': 'Введите: ',
     'First Winner': 'Первый победитель',
@@ -126,7 +127,10 @@ rutranslate={
     'Long': 'Длинная',
     'Dangerous': 'Опасная',
     'is frozen!': 'заморожен!',
-    'Let\'s Go!!!': 'Начнём!!!'
+    'Let\'s Go!!!': 'Начнём!!!',
+    'Steps:': 'Шаги:',
+    'Position:': 'Позиция:',
+    'You cannot use the \"Rocket\" as this action will take you beyond the finish line!!!': 'Нельзя использовать "Ракету", т.к этим действием вы выходите за границу финиша.'
              }
 
 

@@ -9,14 +9,14 @@ def snakes_and_ladders(base, data):
     lang=data['language']
 
     while True:
-        print(translator('Snakes and Ladders', lang))
+        super_print(['Snakes and Ladders', ' 🐍 🪜'], lang, 'Cyan')
         match choose_mode(lang):
             case 'Game':
                 p=[translator('Player 2', lang), translator('Player 3', lang), translator('Player 4', lang)]
                 c=[translator('COMPUTER1', lang), translator('COMPUTER2', lang), translator('COMPUTER3', lang)]
             
                 while True:
-                    game_count=input(translator('Enter number of the players: ', lang))
+                    game_count=super_input('Enter number of the players: ', lang, 'Dark Grey')
                     if game_count in ('2', '3', '4'):
                         try:
                             game_count=int(game_count)
@@ -27,7 +27,7 @@ def snakes_and_ladders(base, data):
                         clear_screen()
                 clear_screen()
 
-                print(translator('Parameters of game: Easy (50), Normal (75), Hard (100)', lang))
+                super_print('Parameters of game: Easy (50), Normal (75), Hard (100)', lang, 'Dark Grey')
 
                 parameters=selection_of_parameters(lang)
                 clear_screen()
@@ -43,9 +43,9 @@ def snakes_and_ladders(base, data):
                 for n, i in enumerate(result1, 1):
                     print(f'{n}) {i.name}')
 
-                start1=input(translator('Enter to start game: ', lang))
+                super_input('Enter to start game: ', lang, 'Dark Grey')
                 func_loading(lang)
-                print(translator('Let\'s Go!!!', lang))
+                super_print('Let\'s Go!!!', lang, 'Green', Style.BRIGHT)
                 w=[translator('First Winner', lang), translator('Second Winner', lang), translator('Third Winner', lang), translator('Forth Winner', lang)]
                 points_list=[3, 2, 1, 0]
                 final_num=[1, 2, 3, 4]
@@ -61,19 +61,22 @@ def snakes_and_ladders(base, data):
                     spisok1=list(map(lambda x: x[0], spisok))
                     spisok2=list(map(lambda x: x[2], spisok))
                     if 1 in spisok2 and game_count==2:
-                        print(f'1) {spisok1[0]} - {translator('WINNER', lang)} 😎🏆')
-                        print(f'2) {spisok1[1]} - {translator('LOSER', lang)} 😫')
+                        print('-'*125)
+                        super_print(['1)', spisok1[0], '-', 'WINNER', '😎🏆.'], lang, 'Green')
+                        super_print(['4)', spisok1[1], '-', 'LOSER', ' 😫.'], lang, 'Light Red')
                         break
                     elif 1 in spisok2 and 2 in spisok2 and game_count==3:
-                        print(f'1) {spisok1[0]} - {translator('WINNER', lang)} 😎🏆')
-                        print(f'2) {spisok1[1]} - {translator('ROUND-UP', lang)} 😀')
-                        print(f'3) {spisok1[2]} - {translator('LOSER', lang)} 😫')
+                        print('-'*125)
+                        super_print(['1)', spisok1[0], '-', 'WINNER', '😎🏆.'], lang, 'Green')
+                        super_print(['2)', spisok1[1], '-', 'ROUND-UP', ' 😀.'], lang, 'Yellow')
+                        super_print(['4)', spisok1[2], '-', 'LOSER', ' 😫.'], lang, 'Light Red')
                         break
                     elif 1 in spisok2 and 2 in spisok2 and 3 in spisok2 and game_count==4:
-                        print(f'1) {spisok1[0]} - {translator('WINNER', lang)} 😎🏆')
-                        print(f'2) {spisok1[1]} - {translator('ROUND-UP', lang)} 😀')
-                        print(f'3) {spisok1[2]} - {translator('BRONZE MEDALIST', lang)} 😐')
-                        print(f'4) {spisok1[3]} - {translator('LOSER', lang)} 😫')
+                        print('-'*125)
+                        super_print(['1)', spisok1[0], '-', 'WINNER', '😎🏆.'], lang, 'Green')
+                        super_print(['2)', spisok1[1], '-', 'ROUND-UP', ' 😀.'], lang, 'Yellow')
+                        super_print(['3)', spisok1[2], '-', 'BRONZE MEDALIST', ' 😐.'], lang, 'Magenta')
+                        super_print(['4)', spisok1[3], '-', 'LOSER', ' 😫.'], lang, 'Light Red')
                         break
 
                 exit_to_mode(lang)
@@ -83,7 +86,7 @@ def snakes_and_ladders(base, data):
                     rules=pyread('ru_rules_ss.txt')
                 else:
                     rules=pyread('en_rules_ss.txt')
-                print(rules)
+                super_print(rules, lang)
                 exit_to_mode(lang)
 
             case 'Highscores':

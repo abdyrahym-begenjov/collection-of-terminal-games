@@ -42,11 +42,11 @@ def double(num):
 
 def game(p, c, lst1, base, lang):
     while True:
-        name=input(f'[{p[0]}] {translator('Enter name: ', lang)}')
+        name=super_input([f'[{p[0]}]', 'Enter name: '], lang, 'Yellow')
         if name in lst1:
-            print(translator('This name is already taken', lang))
+            super_print('This name is already taken', lang, 'Red')
         elif len(name)>16:
-            print(translator('The name must not exceed 16 characters', lang))
+            super_print('The name must not exceed 16 characters', lang, 'Red')
         else:
             if name=='':
                 name=c[0]
@@ -84,7 +84,7 @@ def selection_of_order(lst1, game_count, lang, Computer, Human):
             else:
                 r.append(i)
         if r==[]:
-            print(translator('Moment of Truth 🥁', lang))
+            super_print('Moment of Truth 🥁', lang, 'Dark Grey')
             match game_count:
                 case 2:
                     sleep(2)
@@ -111,7 +111,7 @@ def selection_of_order(lst1, game_count, lang, Computer, Human):
 
 def selection_of_parameters(lang):
     while True:
-        parameters=input(translator('Enter the parameter of game: ', lang))
+        parameters=super_input('Enter the parameter of game: ', lang, 'Dark Grey')
         parameters=new_word(parameters, lang)
         match parameters:
             case 'Easy':
@@ -124,20 +124,22 @@ def selection_of_parameters(lang):
                 parameters=[100, [24, 64, 63, 62], [13, 49, 80], [4, 32, 70, 61], [15, 55, 87], [95]]
                 break
             case _:
-                print(translator('Error!!!', lang))
+                super_print('Error!!!', lang, 'Red')
     return parameters
 
 def draw_leaderboard(base, lang):
-    print(translator('LEADERBOARD:', lang))
+    super_print('LEADERBOARD:', lang)
     base=list(base['Snakes and Ladders'].items())
     base.sort(key=lambda x: x[1], reverse=True)
+    max_value=base[0][1]
+    min_value=base[-1][1]
     base=dict(base)
 
     line1=f'|{translator('NAME |', lang):>18} {translator('POINTS', lang):<16}|'
-    line='-'*len(line1)
-    print(line)
-    print(line1)
-    print(line)
+    line=(Style.BRIGHT+'-')*len(line1)
+    super_print(line, lang, 'Cyan')
+    super_print(line1, lang, 'Cyan', Style.BRIGHT)
+    super_print(line, lang, 'Cyan')
 
     for i, j in base.items():
         name=translator(i, lang) if i.startswith('COMPUTER') else i
@@ -145,8 +147,15 @@ def draw_leaderboard(base, lang):
         name1=f'{name} |'
     
         line2=f'|{name1:>18} {a:<16}|'
-        print(line2)
-        print(line)
+        if j==max_value:
+            super_print(line2, lang, 'Green')
+            super_print(line, lang, 'Green')
+        elif j==min_value:
+            super_print(line2, lang, 'Red')
+            super_print(line, lang, 'Red')
+        else:
+            super_print(line2, lang, 'Yellow')
+            super_print(line, lang, 'Yellow')
 
 def brosok(obj, base, lang, parameters, result1, final_num, points_list, w, Human, Computer):
     if len(parameters)==6:
@@ -157,61 +166,62 @@ def brosok(obj, base, lang, parameters, result1, final_num, points_list, w, Huma
     isdouble=False
     isteleportation=False
     if obj.status==5 and obj.play!=False:
+        print('-'*125)
         if isinstance(obj, Human):
             while True:
-                enter=input(f'[{obj.name}] {translator('Enter: ', lang)}')
+                enter=super_input([f'[{obj.name}]', 'Enter: '], lang, 'Light Blue')
                 enter=enter.lower().strip()
                 if lang=='ru':
                     enter=translator(enter, 'en1')
                 match enter:
                     case 'teleport':
                         if obj.money_teleport==0:
-                            print(translator('NO', lang))
+                            super_print('NO', lang, 'Red')
                             isteleportation=False
                         else:
                             while True:
-                                print(translator('TELEPORTATION 🌀', lang))
-                                da_blin=input(translator('Choose player for teleportation: ', lang))
+                                super_print('TELEPORTATION 🌀', lang, 'Blue')
+                                da_blin=super_input('Choose player for teleportation: ', lang, 'Blue')
                                 if da_blin==obj.name:
-                                    print(translator('Don\'t write your name!!!', lang))
+                                    super_print('Don\'t write your name!!!', lang, 'Red')
                                 elif da_blin in [i.name for i in result1]:
-                                    print(f'{obj.name} --> {da_blin}')
+                                    super_print(f'{obj.name} --> {da_blin}', lang, 'Blue')
                                     for i in result1:
                                         if da_blin==i.name:
                                             obj.level, i.level=obj.teleport(i)
                                     break
                                 else:
-                                    print(translator('Error!!!', lang))
+                                    super_print('Error!!!', lang, 'Red')
                             isteleportation=True
                         break
                     case 'double':
                         if obj.money_double==0:
-                            print(translator('NO', lang))
+                            super_print('NO', lang, 'Red')
                             isdouble=False
                         else:
-                            print(translator('DOUBLE ✖️', lang))
+                            super_print('DOUBLE ✖️', lang, 'Blue')
                             obj.money_double=0
                             obj.moneys-=1
                             isdouble=True
                     case 'rocket':
                         if obj.money_rocket==0:
-                            print(translator('NO', lang))
+                            super_print('NO', lang, 'Red')
                         elif obj.level+10>=parameter:
-                            print(translator('NO', lang))
+                            super_print('You cannot use the \"Rocket\" as this action will take you beyond the finish line!!!', lang, 'Red')
                         else:
-                            print(translator('ROCKET   +10 🚀', lang))
+                            super_print('ROCKET   +10 🚀', lang, 'Blue')
                             obj.level=obj.rocket()
                     case 'ice':
                         if obj.money_ice==0:
-                            print(translator('NO', lang))
+                            super_print('NO', lang, 'Red')
                         else:
                             while True:
-                                print(translator('ICE 🧊', lang))
-                                da_blin=input(translator('Choose player to freeze: ', lang))
+                                super_print('ICE 🧊', lang, 'Blue')
+                                da_blin=super_input('Choose player to freeze: ', lang, 'Blue')
                                 if da_blin==obj.name:
-                                    print(translator('Don\'t write your name!!!', lang))
+                                    super_print('Don\'t write your name!!!', lang, 'Red')
                                 elif da_blin in [i.name for i in result1]:
-                                    print(f'{translator('ICE:', lang)} {da_blin}')
+                                    super_print(['ICE:', da_blin], lang, 'Blue')
                                     for i in result1:
                                         if da_blin==i.name:
                                             i.play=ice(i)
@@ -219,27 +229,27 @@ def brosok(obj, base, lang, parameters, result1, final_num, points_list, w, Huma
                                     obj.moneys-=1
                                     break
                                 else:
-                                    print(translator('Error!!!', lang))
+                                    super_print('Error!!!', lang, 'Red')
                     case _:
                         break
         if isteleportation==False:
             if isinstance(obj, Computer):
-                print(f'[{obj.name}] {translator('Generate: ', lang)}')
+                super_print([f'[{obj.name}] ', 'Generate: '], lang, 'Dark Grey')
             num=randint(1, 6)
             if isdouble==True:
-                print(f'{num}x2')
+                super_print(['Steps:', f'{num}x2'], lang, 'Magenta')
                 num=double(num)
-            print(f'{num}')
+            super_print(['Steps:', str(num)], lang)
             obj.level+=num
             if obj.level==parameter:
-                print(obj.level)
+                super_print(['Position:', str(obj.level)], lang, 'Yellow')
                 obj.status=final_num[0]
-                print(w[0])
+                super_print(w[0], lang, 'Green')
                 final_num.pop(0)
                 w.pop(0)
                 point=points_list.pop(0)
                 if isinstance(obj, Human) and obj.moneys==4:
-                    print(translator('Since you didn\'t use any abilities, you get double points', lang))
+                    super_print('Since you didn\'t use any abilities, you get double points.', lang, 'Green')
                     point*=2
                 if obj.name.startswith('КОМПЬЮТЕР'):
                     base['Snakes and Ladders'][translator(obj.name, 'en1')]+=point
@@ -247,36 +257,37 @@ def brosok(obj, base, lang, parameters, result1, final_num, points_list, w, Huma
                     base['Snakes and Ladders'][obj.name]+=point
                 pywrite('base.json', base)
             elif obj.level>parameter:
-                print(translator('Number is bigger than parameter', lang))
+                super_print('Number is bigger than parameter', lang, 'Red')
                 obj.level-=num
-                print(obj.level)
+                super_print(['Position:', str(obj.level)], lang, 'Yellow')
             elif obj.level in snakes:
                 print('🐍')
                 obj.level-=6
-                print(obj.level)
+                super_print(['Position:', str(obj.level)], lang, 'Light Red')
             elif obj.level in lsnakes:
                 print('🐍🐍')
                 obj.level-=12
-                print(obj.level)
+                super_print(['Position:', str(obj.level)], lang, 'Light Red')
             elif obj.level in ssnake:
-                print(f'{translator('Dangerous', lang)} 🐍')
+                super_print(['Dangerous', ' 🐍'], lang, 'Light Red')
                 obj.level-=60
-                print(obj.level)
+                super_print(['Position:', str(obj.level)], lang, 'Light Red')
             elif obj.level in ladders:
                 print('🪜')
                 obj.level+=6
-                print(obj.level)
+                super_print(['Position:', str(obj.level)], lang, 'Green')
             elif obj.level in lladders:
                 print('🪜🪜')
                 obj.level+=12
-                print(obj.level)
+                super_print(['Position:', str(obj.level)], lang, 'Green')
             else:
-                print(obj.level)
+                super_print(['Position:', str(obj.level)], lang, 'Yellow')
         else:
-            print(obj.level)
+            super_print(['Position:', str(obj.level)], lang, 'Blue')
         spisok2_result=(obj.level, obj.status)
     elif obj.play==False:
-        print(f'{obj.name} {translator('is frozen!', lang)}')
+        print('-'*125)
+        super_print([obj.name, 'is frozen!'], lang, 'Blue')
         spisok2_result=(obj.level, obj.status)
     else:
         spisok2_result=(obj.level, obj.status)
