@@ -17,6 +17,8 @@ def game(p, lst1, base, lang):
             if name not in base['The Cities Game']:
                 base['The Cities Game'][name]=[0, 0]
                 base['Rock, Scissors, Paper'][name]=[0, 0]
+                base['Hangman'][name]=[0, 0]
+                base['Snakes and Ladders'][name]=0
             p.pop(0)
             break
     return name
@@ -38,7 +40,6 @@ def selection_of_order(lst1, game_count, lang, Player):
         if r==[]:
             delete_cursor()
             super_print('Moment of Truth  🥁', lang, 'Dark Grey')
-            return_cursor()
             match game_count:
                 case 2:
                     sleep(2)
@@ -47,6 +48,7 @@ def selection_of_order(lst1, game_count, lang, Player):
                 case 4:
                     sleep(6)
             clear_screen()
+            return_cursor()
             result=[f'{i}: {c}' for i, c in lst]
             text=', '.join(result)
             print(text)
@@ -153,8 +155,8 @@ def play(obj, word, max_points, result1, cities_list, cities_set, losers, have_w
             if word[-1] in ('ъ', 'ы', 'ь'):
                 word=word[:-1]
             city=word
-            super_print(word, lang, 'Light Blue')
-            word=super_input(['You have', obj.hearts, '❤️ . Enter the word or ability: '], lang)
+            super_print(word, lang)
+            word=super_input(['You have', obj.hearts, '❤️ . Enter the word or ability: '], lang, 'Light Blue')
             word=word.title().strip()
             if word=='':
                 super_print('You must enter the word!!!', lang, 'Red')
@@ -254,7 +256,7 @@ def play(obj, word, max_points, result1, cities_list, cities_set, losers, have_w
     return spisok2_result
 
 def mode_infinity(name, cities_list, base, lang):
-    start=super_input('Enter to start game: ', lang, 'Dark Grey')
+    super_input('Enter to start game: ', lang, 'Dark Grey')
     func_loading(lang)
 
     word=choice(cities_list)
@@ -273,8 +275,8 @@ def mode_infinity(name, cities_list, base, lang):
             print(star(points, lang))
             break
         if hearts!=0:
-            super_print([f'{number})', word], lang, 'Light Blue')
-            word=super_input(['You have', hearts, '❤️ . Enter the word: '], lang)
+            super_print([f'{number})', word], lang)
+            word=super_input(['You have', hearts, '❤️ . Enter the word: '], lang, 'Light Blue')
             word=word.title().strip()
         if hearts<=0:
             super_print('Game Over!!!', lang, 'Light Red')
@@ -302,7 +304,7 @@ def mode_infinity(name, cities_list, base, lang):
         pywrite('base.json', base)
 
 def mode_party(name, cities_list, base, lang):
-    p=[translator('Player 2', lang), translator('Player 3', lang), translator('Player 4', lang)]
+    p=['Player 2', 'Player 3', 'Player 4']
     lst1=[name]
     while True:
         game_count=super_input('Enter number of the players: ', lang, 'Dark Grey')
@@ -325,7 +327,7 @@ def mode_party(name, cities_list, base, lang):
     for n, i in enumerate(result1, 1):
         super_print(f'{n}) {i.name}', lang)
                 
-    start=super_input('Enter to start game: ', lang, 'Dark Grey')
+    super_input('Enter to start game: ', lang, 'Dark Grey')
     func_loading(lang)
 
     final=False

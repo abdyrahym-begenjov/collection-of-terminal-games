@@ -28,10 +28,10 @@ game.
 • The first player (You or the Computer) to reach the chosen 
   number of winning rounds wins the entire game!
 • Upon match completion, points are recorded in the highscores:
-  - If you win, the chosen number of target points is added to 
-    your profile's victories column.
-  - If you lose, the chosen number of target points is added to 
-    your profile's defeats column.
+  - If you win, the chosen number of target points is added 
+  to your profile's victories column.
+  - If you lose, the chosen number of target points is added 
+  to your profile's defeats column.
 
 ------------------------------------------------------------
 📊  GAME MODES & MENUS

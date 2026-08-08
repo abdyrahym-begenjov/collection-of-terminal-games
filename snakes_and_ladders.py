@@ -12,7 +12,7 @@ def snakes_and_ladders(base, data):
         super_print(['Snakes and Ladders', ' 🐍 🪜'], lang, 'Cyan')
         match choose_mode(lang):
             case 'Game':
-                p=[translator('Player 2', lang), translator('Player 3', lang), translator('Player 4', lang)]
+                p=['Player 2', 'Player 3', 'Player 4']
                 c=[translator('COMPUTER1', lang), translator('COMPUTER2', lang), translator('COMPUTER3', lang)]
             
                 while True:
@@ -46,7 +46,7 @@ def snakes_and_ladders(base, data):
                 super_input('Enter to start game: ', lang, 'Dark Grey')
                 func_loading(lang)
                 super_print('Let\'s Go!!!', lang, 'Green', Style.BRIGHT)
-                w=[translator('First Winner', lang), translator('Second Winner', lang), translator('Third Winner', lang), translator('Forth Winner', lang)]
+                w=['First Winner', 'Second Winner', 'Third Winner', 'Forth Winner']
                 points_list=[3, 2, 1, 0]
                 final_num=[1, 2, 3, 4]
 

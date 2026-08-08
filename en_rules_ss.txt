@@ -119,8 +119,8 @@ and Third Winner.
 		2nd Place: Earns 2 points.
 		3rd Place: Earns 1 point.
 		4th Place: Earns 0 points.
-* No-Ability Multiplier Bonus: If a human player has not used up any of his 4 
-starting tactical abilities, he receives a double point bonus.
+* No-Ability Multiplier Bonus: If the first human winner has not used any of their 
+4 starting tactical abilities, they receive a bonus of double points.
 * Match Termination: A 2-player match ends as soon as 1st place is decided. A 3-player 
 match ends when 1st and 2nd places are secured. A 4-player match ends once 1st, 
 2nd, and 3rd places are filled. All points earned are instantly saved to the base 

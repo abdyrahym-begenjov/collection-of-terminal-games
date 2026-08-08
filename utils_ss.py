@@ -84,6 +84,7 @@ def selection_of_order(lst1, game_count, lang, Computer, Human):
             else:
                 r.append(i)
         if r==[]:
+            delete_cursor()
             super_print('Moment of Truth 🥁', lang, 'Dark Grey')
             match game_count:
                 case 2:
@@ -93,6 +94,7 @@ def selection_of_order(lst1, game_count, lang, Computer, Human):
                 case 4:
                     sleep(6)
             clear_screen()
+            return_cursor()
             result=[f'{i}: {c}' for i, c in lst]
             text=', '.join(result)
             print(text)
@@ -246,9 +248,9 @@ def brosok(obj, base, lang, parameters, result1, final_num, points_list, w, Huma
                 obj.status=final_num[0]
                 super_print(w[0], lang, 'Green')
                 final_num.pop(0)
-                w.pop(0)
+                first_winner=w.pop(0)
                 point=points_list.pop(0)
-                if isinstance(obj, Human) and obj.moneys==4:
+                if isinstance(obj, Human) and obj.moneys==4 and first_winner=='First Winner':
                     super_print('Since you didn\'t use any abilities, you get double points.', lang, 'Green')
                     point*=2
                 if obj.name.startswith('КОМПЬЮТЕР'):
