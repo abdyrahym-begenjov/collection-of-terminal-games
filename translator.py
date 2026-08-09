@@ -63,7 +63,6 @@ rutranslate={
     'You have received the maximum points.': 'Вы получили максимальные очки.',
     'You are WINNER!!!': 'Вы ПОБЕДИТЕЛЬ!!!',
     'You are eliminated from the game!!!': 'Вы выбываете из игры!!!',
-    'Choose a game mode: ': 'Выберите режим игры: ',
     'Infinity          Party': 'Бесконечность          Вечеринка',
     'Enter name: ': 'Введите имя: ',
     'Enter language: ': 'Введите язык: ',
@@ -130,7 +129,29 @@ rutranslate={
     'Let\'s Go!!!': 'Начнём!!!',
     'Steps:': 'Шаги:',
     'Position:': 'Позиция:',
-    'You cannot use the \"Rocket\" as this action will take you beyond the finish line!!!': 'Нельзя использовать "Ракету", т.к этим действием вы выходите за границу финиша.'
+    'You cannot use the \"Rocket\" as this action will take you beyond the finish line!!!': 'Нельзя использовать "Ракету", т.к этим действием вы выходите за границу финиша.',
+    'Quiz': 'Викторина',
+    'Timer      Infinity': 'Таймер      Бесконечность',
+    'Timer': 'Таймер',
+    'Infinity': 'Бесконечность',
+    'Parameters of game: Easy (15), Normal (25), Hard (40), Dangerous (40 with surprise)': 'Параметры игры: Лёгкий (15), Нормальный (25), Сложный (40), Опасный (40 с сюрпризом)',
+    'You have': 'У вас есть',
+    'Time: ': 'Время: ',
+    'Time: ': 'Время: ',
+    'Enter the variant of answer: ': 'Введите вариант ответа: ',
+    'You must enter the variant!!!': 'Вы должны ввести вариант!!!',
+    'Regular: ': 'Правильные: ',
+    'Irregular: ': 'Неправильные: ',
+    'You Win!!!': 'Вы выиграли!!!',
+    'Good Work!!!': 'Хорошая работа!!!',
+    'Weak, but still you\'re great!!!': 'Слабовато, но все же ты молодец!!!',
+    'The final question to determine the outcome of the game.': 'Последний вопрос, который определит исход игры.', 
+    'Time: 00:00. Game Over!!!': 'Время: 00:00. Игра окончена!!!',
+    'Game': 'Игра',
+    'Dangerous': 'Опасный',
+    'You are ABSOLUTE CHAMPION!!!': 'Вы АБСОЛЮТНЫЙ ЧЕМПИОН!!!',
+    'Yes': 'Да',
+    '💣 BOOM!!!': '💣 БУМ!!!'
              }
 
 

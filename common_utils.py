@@ -87,17 +87,23 @@ def enter_lang(data):
                 lang='ru'
                 cities_list=pyread('goroda.json')
                 words_list=pyread('russian_words.json')
+                v=['А', 'Б', 'В', 'Г']
+                questions=pyread('q2.json')
                 break
             case 'English':
                 lang='en'
                 cities_list=pyread('cities.json')
                 words_list=pyread('words.json')
+                v=['A', 'B', 'C', 'D']
+                questions=pyread('q1.json')
                 break
             case _:
                 clear_screen()
     data['language']=lang
     data['cities']=cities_list
     data['words']=words_list
+    data['variants']=v
+    data['questions']=questions
     pywrite('data.json', data)
     return lang
 
@@ -120,6 +126,7 @@ def enter_name(data, base, lang):
                 base['Rock, Scissors, Paper'][name]=[0, 0]
                 base['Hangman'][name]=[0, 0]
                 base['Snakes and Ladders'][name]=0
+                base['Quiz'][name]=[0, 0]
                 pywrite('base.json', base)
             return name
 

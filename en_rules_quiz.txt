@@ -1,0 +1,77 @@
+=================================================================================
+                           🤔  QUIZ — GAME RULES  📯
+=================================================================================
+
+This is a multilingual quiz game (supporting English and Russian) that saves your 
+user profile, tracks high scores, and challenges you across two distinct gameplay 
+modes.
+
+---------------------------------------------------------------------------------
+⚙️  MAIN MENU AND SYSTEM MODES
+---------------------------------------------------------------------------------
+When you launch the game, you can navigate through the following system modes:
+* Game: Launches the configuration setup to start a live match.
+• Rules: The mode provides players with a quick guide to the game's mechanics, 
+winning conditions, and menu navigation.
+* Highscores: In this mode, the data is extracted from the local save file and
+the formatted tableau is dynamically displayed. It lists the names of all
+registered players next to the accumulated points, which will be neatly
+distributed between the Timer and Infinity modes.
+* Settings: Allows you to switch the active interface language from
+English to Russian at any time and change the name for the permanent first player.
+* Exit: Safely closes the game application after a confirmation prompt.
+
+---------------------------------------------------------------------------------
+📜  GENERAL RULES
+---------------------------------------------------------------------------------
+* Setup: On your first run, you will be prompted to select your language and enter 
+your name. Your name and progression are saved across sessions.
+* Answering Questions: For every question, you must type a valid letter corresponding 
+to the choices provided (A, B, C, D for English or А, Б, В, Г for Russian). Invalid 
+responses will not be accepted, and you will be forced to try again.
+* Question Pool: Once a question has been asked, it is removed from the active 
+question list for that session so you will not see duplicates.
+
+---------------------------------------------------------------------------------
+🎮  GAME MODES
+---------------------------------------------------------------------------------
+### A. Timer Mode
+In this mode, you race against a ticking clock to answer a fixed set of questions.
+Difficulty Parameters:
+	- Easy: 15 questions, starting with 45 seconds.
+	- Normal: 25 questions, starting with 60 seconds.
+	- Hard: 40 questions, starting with 90 seconds.
+	- Dangerous: 40 questions, starting with 90 seconds, featuring a "surprise" 
+	penalty mechanism.
+Rules & Time Mechanics:
+* Answering a question correctly awards you an extra 5 seconds.
+* Answering incorrectly penalizes your time by the number of seconds it took you 
+to think about that 
+specific answer.
+* Dangerous Surprise: If playing on "Dangerous" difficulty and you guess wrong, 
+there is a hidden "bomb" 
+among the incorrect answers. If your wrong answer triggers the bomb, you immediately 
+lose an additional 10 seconds.
+* Sudden Death: If your correct and incorrect counts are completely tied at the 
+end of the question pool, the game gives you one final tie-breaker question to 
+determine your ultimate victory or loss.
+* Winning/Scoring Conditions: If your time drops to 00:00 or below, it's an immediate 
+Game Over.
+* If you finish all questions, your rank is determined by accuracy: Perfect scores 
+give you "You Win!!!" (3 stars), 70% accuracy gives "Good Work!!!" (2 stars), and 
+50% accuracy gives "Weak, but still you're great!!!" (1 star). Anything below or 
+equal to 50% triggers a Game Over.
+* Final points are calculated using your regular correct answers and remaining 
+time, divided by your penalizing mistakes to ensure a balanced leaderboard score.
+
+### B. Infinity Mode
+This mode tests your long-term survival rather than speed. There is no timer, 
+allowing you to take as much time as you need per question.
+Rules & Mechanics:
+* You begin the game with 3 Heart (❤️) lives.
+* Every correct answer awards you 1 point.
+* Every incorrect answer deducts 1 Heart life.
+* End Game: The game ends immediately when you lose all 3 hearts (Game Over) or 
+if you successfully clear out the entire question database pool, crowning you the 
+"ABSOLUTE CHAMPION!!!". Your accumulated points are saved straight to the leaderboard.
+=================================================================================

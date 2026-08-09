@@ -1,5 +1,8 @@
 {
     "name": "",
     "language": "",
-    "cities": []
+    "cities": [],
+    "words": [],
+    "variants": [],
+    "questions": []
 }
