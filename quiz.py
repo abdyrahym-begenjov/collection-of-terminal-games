@@ -1,5 +1,5 @@
 from random import choice
-from time import sleep, time
+from time import time
 from translator import translator
 from utils_quiz import *
 
@@ -10,12 +10,12 @@ def quiz(base, data):
         lst=data['questions']
         v=data['variants']
 
-        print(translator('Quiz', lang))
+        super_print(['Quiz', ' ❓'], lang, 'Cyan')
         match choose_mode(lang):
             case 'Game':
                 while True:
-                    print(translator('Timer      Infinity', lang))
-                    mode_game=input(translator('Choose a game mode: ', lang))
+                    super_print('Timer      Infinity', lang, 'Cyan')
+                    mode_game=super_input('Choose a game mode: ', lang, 'Cyan')
                     mode_game=new_word(mode_game, lang)
                     if mode_game=='Timer' or mode_game=='Infinity':
                         break            
@@ -25,13 +25,9 @@ def quiz(base, data):
                 clear_screen()
                 if mode_game=='Timer':
                     parameter, nums_question, seconds=choose_parameter(lang)
-                    clear_screen()
-                    start_game=input(translator('Enter to start game: ', lang))
 
-                print(translator('Loading...', lang))
-                sleep(2)
-                clear_screen()
-                print(translator('Let\'s Go!!!', lang))
+                func_loading(lang)
+                super_print('Let\'s Go!!!', lang, 'Green', Style.BRIGHT)
 
                 while True:
                     match mode_game:
@@ -43,7 +39,7 @@ def quiz(base, data):
                                 if final and is_game_over==False:
                                     seconds=mins*60+secs
                                     points=int(regular+(seconds/(irregular+1)))
-                                    print(f'{translator("Points: ", lang)}{points}')
+                                    super_print(['Points: ', str(points)], lang, 'Yellow')
                                     base['Quiz'][name][0]+=points
                                     pywrite('base.json', base)
                                     break
@@ -52,27 +48,27 @@ def quiz(base, data):
                                 else:
                                     continue
                             elif seconds<=0:
-                                print(translator('Time: 00:00. Game Over!!!', lang))
+                                super_print('Time: 00:00. Game Over!!!', lang, 'Red')
                                 break
                         case 'Infinity':
                             if lst==[]:
-                                print(translator('You are ABSOLUTE CHAMPION!!!', lang))
+                                super_print('You are ABSOLUTE CHAMPION!!!', lang, 'Green')
                                 base[name][1]=points
                                 pywrite('base.json', base)
                                 break
                             elif heart==0:
-                                print(translator('Game Over!!!', lang))
+                                super_print('Game Over!!!', lang, 'Red')
                                 print(f'{translator("Points: ", lang)}{points}')
                                 if base['Quiz'][name][1]<points:
-                                    print(translator('You\'ve broken a new highscore!!!', lang))
+                                    super_print('You\'ve broken a new highscore!!!', lang, 'Green')
                                     base['Quiz'][name][1]=points
                                     pywrite('base.json', base)
                                 break
                     number+=1
                     question=choice(lst)
-                    print(f'{number}) {question[0]}')
-                    print(f'{v[0]}) {question[1]:<35} {" ":>35} {v[2]}) {question[3]}')
-                    print(f'{v[1]}) {question[2]:<35} {" ":>35} {v[3]}) {question[4]}')
+                    super_print(f'{number}) {question[0]}', lang, 'Blue', Style.BRIGHT)
+                    super_print(f'{v[0]}) {question[1]:<35} {" ":>35} {v[2]}) {question[3]}', lang, 'Light Blue')
+                    super_print(f'{v[1]}) {question[2]:<35} {" ":>35} {v[3]}) {question[4]}', lang, 'Light Blue')
                     if mode_game=='Timer':
                         start=time()
                         answer, seconds=answer_question(lang, v, heart, countdown, seconds)
@@ -81,18 +77,18 @@ def quiz(base, data):
                     else:
                         answer=answer_question(lang, v, heart)
                     if answer==question[5]:
-                        print(translator('Yes', lang))
+                        super_print('YES', lang, 'Green')
                         if mode_game=='Timer':
                             regular+=1
                             seconds+=5
                         else:
                             points+=1
                     else:
-                        print(translator('No', lang))
+                        super_print('NO', lang, 'Light Red')
                         if mode_game=='Timer' and parameter=='Dangerous':
                             bomb=choose_bomb(question, v)
                             if answer==bomb:
-                                print(translator('💣 BOOM!!!', lang))
+                                super_print('💣 BOOM!!!', lang, 'Light Red')
                                 seconds-=10
                         if mode_game=='Infinity':
                             heart-=1

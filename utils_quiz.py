@@ -4,8 +4,8 @@ from random import choice
 
 def choose_parameter(lang):
     while True:
-        print(translator('Parameters of game: Easy (15), Normal (25), Hard (40), Dangerous (40 with surprise)', lang))
-        parameter=input(translator('Enter the parameter of game: ', lang))
+        super_print('Parameters of game: Easy (15), Normal (25), Hard (40), Dangerous (40 with surprise)', lang, 'Dark Grey')
+        parameter=super_input('Enter the parameter of game: ', lang, 'Dark Grey')
         parameter=new_word(parameter, lang)
         match parameter:
             case 'Easy':
@@ -21,33 +21,33 @@ def choose_parameter(lang):
                 seconds=90
                 break
             case _:
-                print(translator('Error!!!', lang))
+                super_print('Error!!!', lang, 'Red')
     return parameter, nums_question, seconds
 
 def final_result(regular, irregular, number, lang, countdown):
     print(f'{translator('Time: ', lang)}{countdown}. {translator('Regular: ', lang)}{regular}  {translator('Irregular: ', lang)}{irregular}')
     if regular==number:
-        print(translator('You Win!!!', lang))
+        super_print('You Win!!!', lang, 'Green')
         print('⭐'*3)
         final=True
         is_game_over=False
     elif (regular/number)*100>=70:
-        print(translator('Good Work!!!', lang))
+        super_print('Good Work!!!', lang, 'Yellow')
         print('⭐'*2)
         final=True
         is_game_over=False
     elif (regular/number)*100>50:
-        print(translator('Weak, but still you\'re great!!!', lang))
+        super_print('Weak, but still you\'re great!!!', lang, 'Yellow')
         print('⭐')
         final=True
         is_game_over=False
     elif (regular/number)*100==50:
-        print(translator('The final question to determine the outcome of the game.', lang))
+        super_print('The final question to determine the outcome of the game.', lang, 'Magenta')
         nums_question+=1
         final=False
         is_game_over=False
     else:
-        print(translator('Game Over!!!', lang))
+        super_print('Game Over!!!', lang, 'Red')
         print('💩')
         final=True
         is_game_over=True
@@ -56,23 +56,25 @@ def final_result(regular, irregular, number, lang, countdown):
 def answer_question(lang, v, heart, countdown=None, seconds=None):
     while True:
         if countdown and seconds:
-            answer=input(f'{translator('Time: ', lang)}{countdown}. {translator('Enter the variant of answer: ', lang)}')
+            answer=super_input(['Time: ', countdown, 'Enter the variant of answer: '], lang)
         else:
-            answer=input(f'{translator("You have", lang)} {heart} ❤️ . {translator('Enter the variant of answer: ', lang)}')
+            answer=super_input(['You have', heart, ' ❤️ .', 'Enter the variant of answer: '], lang)
         answer=answer.upper().strip()
         if answer in v:
             break
         else:
-            print(translator('You must enter the variant!!!', lang))
+            super_print('You must enter the variant!!!', lang, 'Red')
     if countdown:
         return answer, seconds
     else:
         return answer
 
 def draw_leaderboard(base, lang):
-    print(translator('LEADERBOARD:', lang))
+    super_print('LEADERBOARD:', lang)
     base=list(base['Quiz'].items())
     base.sort(key=lambda x: x[1][0]+x[1][1], reverse=True)
+    max_value=base[0][1][0]+base[0][1][1]
+    min_value=base[-1][1][0]+base[-1][1][1]
     base=dict(base)
 
     lst=['Timer', 'Infinity', 'Overall Result']
@@ -80,10 +82,10 @@ def draw_leaderboard(base, lang):
     lst=[f'{i.upper().strip():<16}|' for i in lst]
     lst=' '.join(lst)
     line1=f'|{translator('NAME |', lang):>18} {lst:<16}'
-    line='-'*len(line1)
-    print(line)
-    print(line1)
-    print(line)
+    line=(Style.BRIGHT+'-')*len(line1)
+    super_print(line, lang, 'Cyan')
+    super_print(line1, lang, 'Cyan', Style.BRIGHT)
+    super_print(line, lang, 'Cyan')
 
     for i, j in base.items():
         name=i
@@ -93,8 +95,15 @@ def draw_leaderboard(base, lang):
         name1=f'{name} |'
     
         line2=f'|{name1:>18} {a:<16}| {b:<16}| {c:<16}|'
-        print(line2)
-        print(line)
+        if c==max_value:
+            super_print(line2, lang, 'Green')
+            super_print(line, lang, 'Green')
+        elif c==min_value:
+            super_print(line2, lang, 'Red')
+            super_print(line, lang, 'Red')
+        else:
+            super_print(line2, lang, 'Yellow')
+            super_print(line, lang, 'Yellow')
 
 def choose_bomb(question, v):
     dict_variants={'Q': 0, v[0]: 1, v[1]: 2, v[2]: 3, v[3]: 4}

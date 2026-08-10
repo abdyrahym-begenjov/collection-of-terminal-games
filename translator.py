@@ -150,7 +150,7 @@ rutranslate={
     'Game': 'Игра',
     'Dangerous': 'Опасный',
     'You are ABSOLUTE CHAMPION!!!': 'Вы АБСОЛЮТНЫЙ ЧЕМПИОН!!!',
-    'Yes': 'Да',
+    'YES': 'ДА',
     '💣 BOOM!!!': '💣 БУМ!!!'
              }
 
