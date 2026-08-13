@@ -111,24 +111,34 @@ def enter_name(data, base, lang):
     clear_screen()
     while True:
         name=super_input('Enter your name: ', lang)
-        name=name.strip()
+        name=name.strip().title()
         if name=='':
             clear_screen()
             super_print('Error!!!', lang, 'Red')
+        elif name in game_system_words:
+            clear_screen()
+            super_print('Don\'t write a word that is in the game system.', lang, 'Red')
         elif len(name)>16:
             clear_screen()
             super_print('The name must not exceed 16 characters!!!', lang, 'Red')
         else:
             data['name']=name
             pywrite('data.json', data)
-            if name not in base['The Cities Game']:
-                base['The Cities Game'][name]=[0, 0]
-                base['Rock, Scissors, Paper'][name]=[0, 0]
-                base['Hangman'][name]=[0, 0]
-                base['Snakes and Ladders'][name]=0
-                base['Quiz'][name]=[0, 0]
-                pywrite('base.json', base)
+            fill_base(name, base, lang)
             return name
+
+def fill_base(name, base, lang):
+    for i in base:
+        if name not in base[i]:
+            for i in base:
+                if i=='Users':
+                    password=super_input('Create your password: ', lang)
+                    base[i][name]=password
+                elif i=='Snakes and Ladders':
+                    base[i][name]=0
+                else:
+                    base[i][name]=[0, 0]
+            pywrite('base.json', base)
 
 def new_word(word, lang):
     word=word.strip().title()
@@ -141,7 +151,7 @@ def settings(data, base, name, lang):
     while True:
         super_print(['Name:', data['name']], lang)
         super_print(['Language:', data['language']], lang)
-        change=super_input('Do you want to change parameters (Enter \"Name\" or \"Language\")?: ', lang)
+        change=super_input('Do you want to change parameters (Enter \"Name\" or \"Language\" or \"Users\")?: ', lang)
         change=new_word(change, lang)
         match change:
             case 'Name':
@@ -150,6 +160,38 @@ def settings(data, base, name, lang):
             case 'Language':
                 lang=enter_lang(data)
                 clear_screen()
+            case 'Users':
+                clear_screen()
+                u=', '.join(base['Users'])
+                super_print(['List of all players:', u], lang)
+                want_to_delete=super_input('Do you want to delete an user (Enter \"Yes\" or \"No\")?: ', lang)
+                if new_word(want_to_delete, lang)=='Yes':
+                    delete_person=super_input('Enter name for delete: ', lang)
+                    delete_person=delete_person.strip().title()
+                    if delete_person in base['Users']:
+                        for i in range(3):
+                            password=super_input('Enter the password of player: ', lang)
+                            if password==base['Users'][delete_person]:
+                                super_print([f'{delete_person}', 'is deleted.'], lang)
+                                for i in base:
+                                    base[i].pop(delete_person)
+                                pywrite('base.json', base)
+                                if delete_person==data['name']:
+                                    for i in data:
+                                        if i in ('name', 'language'):
+                                            data[i]=''
+                                        else:
+                                            data[i]=[]
+                                    pywrite('data.json', data)
+                                break
+                            else:
+                                super_print('Irregular password! Try again.', lang, 'Light Red')
+                        else:
+                            super_print('You don\'t know the password of the selected user. Ask him/her for the password and try again later.', lang, 'Red')
+                    super_input('Enter to exit: ', lang)
+                    clear_screen()
+                else:
+                    clear_screen()
             case _:
                 break
     clear_screen()

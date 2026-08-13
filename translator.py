@@ -22,7 +22,7 @@ rutranslate={
     'Enter to exit mode: ': 'Войдите в режим выхода: ',
     'Game      Rules      Highscores      Exit': 'Игра      Правилы      Рекорды      Выход',
     'Choose a game mode: ': 'Выберите режим игры: ',
-    'Do you want to change parameters (Enter \"Name\" or \"Language\")?: ': 'Хотите ли вы изменить параметры (введите \"Имя\" или \"Язык\")?: ',
+    'Do you want to change parameters (Enter \"Name\" or \"Language\" or \"Users\")?: ': 'Вы хотите изменить параметры (введите \"Имя\", \"Язык\" или \"Пользователи\")?: ',
     'Do you want to exit (\"Yes\" or \"No\")?: ': 'Вы хотите завершить (\"Да\" или \"Нет\")?: ',
     'Goodbye!!!': 'До свидания!!!',
     'Name:': 'Имя:',
@@ -151,12 +151,24 @@ rutranslate={
     'Dangerous': 'Опасный',
     'You are ABSOLUTE CHAMPION!!!': 'Вы АБСОЛЮТНЫЙ ЧЕМПИОН!!!',
     'YES': 'ДА',
-    '💣 BOOM!!!': '💣 БУМ!!!'
+    '💣 BOOM!!!': '💣 БУМ!!!',
+    'Users': 'Пользователи',
+    'Don\'t write a word that is in the game system.': 'Не пишите слово, которое есть в игровой системе.',
+    'Create your password: ': 'Придумайте свой пароль: ',
+    'List of all players:': 'Список всех игроков:',
+    'Do you want to delete an user (Enter \"Yes\" or \"No\")?: ': 'Вы хотите удалить пользователя (введите "Да" или "Нет")?: ',
+    'Enter name for delete: ': 'Выберите пользователя для удвления: ',
+    'Enter the password of player: ': 'Введите пароль пользователя: ',
+    'is deleted.': 'удалён.',
+    'Irregular password! Try again.': 'Неправильный пароль! Попробуйте снова.',
+    'You don\'t know the password of the selected user. Ask him/her for the password and try again later.': 'Вы не знаете пароль выбранного пользователя. Спросите у него/неё пароль и попробуйте позже.'
              }
 
 
 entranslate={j: i for i, j in rutranslate.items()}
 
+game_system_words=[i.strip().title() for i in rutranslate.keys()]
+game_system_words.extend([i.strip().title() for i in entranslate.keys()])
 
 def translator(word, language):
     match language:

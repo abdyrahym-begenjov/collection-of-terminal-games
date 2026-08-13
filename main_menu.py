@@ -9,22 +9,22 @@ from colorama import init, Style
 
 init(autoreset=True)
 
-data=pyread('data.json')
-base=pyread('base.json')
-
-name=data['name']
-lang=data['language']
-
-if lang=='':
-    lang=enter_lang(data)
-    clear_screen()
-
-if name=='':
-    name=enter_name(data, base, lang)
-    clear_screen()
-
 while True:
-    return_cursor()
+    data=pyread('data.json')
+    base=pyread('base.json')
+
+    name=data['name']
+    lang=data['language']
+
+    if lang=='':
+        lang=enter_lang(data)
+        clear_screen()
+
+    if name=='':
+        name=enter_name(data, base, lang)
+        clear_screen()
+        return_cursor()
+
     super_print('COLLECTION OF TERMINAL GAMES', lang, 'White', Style.BRIGHT)
     super_print(['Creator: Abdyrahym Begenjov', 10*' ','(GitHub: abdyrahym-begenjov)'], lang)
     super_print('The Cities Game', lang)

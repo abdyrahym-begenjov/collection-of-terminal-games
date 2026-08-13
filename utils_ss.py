@@ -43,8 +43,11 @@ def double(num):
 def game(p, c, lst1, base, lang):
     while True:
         name=super_input([f'[{p[0]}]', 'Enter name: '], lang, 'Yellow')
+        name=name.strip().title()
         if name in lst1:
             super_print('This name is already taken', lang, 'Red')
+        elif name in game_system_words:
+            super_print('Don\'t write a word that is in the game system.', lang, 'Red')
         elif len(name)>16:
             super_print('The name must not exceed 16 characters', lang, 'Red')
         else:
@@ -53,7 +56,7 @@ def game(p, c, lst1, base, lang):
                 c.pop(0)
             p.pop(0)
             break
-    if name not in base['Snakes and Ladders']:
+    if name not in base['Snakes and Ladders'] and name.startswith(('COMPUTER', 'КОМПЬЮТЕР')):
         if name.startswith('КОМПЬЮТЕР'):
             if translator(name, 'en1') in base:
                 pass
@@ -61,12 +64,7 @@ def game(p, c, lst1, base, lang):
                 base['Snakes and Ladders'][translator(name, 'en1')]=0
         elif name.startswith('COMPUTER'):
             base['Snakes and Ladders'][name]=0
-        else:
-            base['The Cities Game'][name]=[0, 0]
-            base['Rock, Scissors, Paper'][name]=[0, 0]
-            base['Hangman'][name]=[0, 0]
-            base['Snakes and Ladders'][name]=0
-        pywrite('base.json', base)
+    fill_base(name, base, lang)
     return name
 
 def selection_of_order(lst1, game_count, lang, Computer, Human):
