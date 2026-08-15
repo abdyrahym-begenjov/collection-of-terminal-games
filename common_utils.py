@@ -118,6 +118,9 @@ def enter_name(data, base, lang):
         elif name in game_system_words:
             clear_screen()
             super_print('Don\'t write a word that is in the game system.', lang, 'Red')
+        elif name in base['Users']:
+            clear_screen()
+            super_print('This name is already in the game database. Choose another name.', lang, 'Red')
         elif len(name)>16:
             clear_screen()
             super_print('The name must not exceed 16 characters!!!', lang, 'Red')
@@ -151,7 +154,9 @@ def settings(data, base, name, lang):
     while True:
         super_print(['Name:', data['name']], lang)
         super_print(['Language:', data['language']], lang)
-        change=super_input('Do you want to change parameters (Enter \"Name\" or \"Language\" or \"Users\")?: ', lang)
+        u=', '.join(base['Users'])
+        super_print(['Users:', u], lang)
+        change=super_input('Do you want to change parameters?: ', lang)
         change=new_word(change, lang)
         match change:
             case 'Name':
@@ -162,36 +167,76 @@ def settings(data, base, name, lang):
                 clear_screen()
             case 'Users':
                 clear_screen()
-                u=', '.join(base['Users'])
-                super_print(['List of all players:', u], lang)
-                want_to_delete=super_input('Do you want to delete an user (Enter \"Yes\" or \"No\")?: ', lang)
-                if new_word(want_to_delete, lang)=='Yes':
-                    delete_person=super_input('Enter name for delete: ', lang)
-                    delete_person=delete_person.strip().title()
-                    if delete_person in base['Users']:
-                        for i in range(3):
-                            password=super_input('Enter the password of player: ', lang)
-                            if password==base['Users'][delete_person]:
-                                super_print([f'{delete_person}', 'is deleted.'], lang)
-                                for i in base:
-                                    base[i].pop(delete_person)
-                                pywrite('base.json', base)
-                                if delete_person==data['name']:
-                                    for i in data:
-                                        if i in ('name', 'language'):
-                                            data[i]=''
+                change_profile=super_input('Enter the username of the user whose parameters you want to change: ', lang)
+                change_profile=change_profile.strip().title()
+                if change_profile in base['Users']:
+                    for i in range(3):
+                        password=super_input('Enter the password of player: ', lang)
+                        if password==base['Users'][change_profile]:
+                            super_print('What exactly do you want to do with the selected profile?', lang)
+                            choose_change_parameter=super_input('Enter \"Change name\", \"Change password\" or \"Delete user\": ', lang)
+                            clear_screen()
+                            match new_word(choose_change_parameter, lang):
+                                case 'Change Name':
+                                    for i in base:
+                                        base[i]['']=base[i][change_profile]
+                                        base[i].pop(change_profile)
+                                    pywrite('base.json', base)
+                                    while True:
+                                        new_name=super_input('Enter your new name: ', lang)
+                                        new_name=new_name.strip().title()
+                                        if new_name=='':
+                                            clear_screen()
+                                            super_print('Error!!!', lang, 'Red')
+                                        elif new_name in game_system_words:
+                                            clear_screen()
+                                            super_print('Don\'t write a word that is in the game system.', lang, 'Red')
+                                        elif name in base['Users']:
+                                            clear_screen()
+                                            super_print('This name is already in the game database. Choose another name.', lang, 'Red')
+                                        elif len(new_name)>16:
+                                            clear_screen()
+                                            super_print('The name must not exceed 16 characters!!!', lang, 'Red')
                                         else:
-                                            data[i]=[]
-                                    pywrite('data.json', data)
-                                break
-                            else:
-                                super_print('Irregular password! Try again.', lang, 'Light Red')
+                                            for i in base:
+                                                base[i][new_name]=base[i]['']
+                                                base[i].pop('')
+                                            pywrite('base.json', base)
+                                            if change_profile==data['name']:
+                                                data['name']=new_name
+                                                pywrite('data.json', data)
+                                            super_print('The name change is complete!!!', lang, 'Green')
+                                            break
+                                case 'Change Password':
+                                    password=super_input('Create your new password: ', lang)
+                                    base['Users'][name]=password
+                                    super_print('The password change is complete!!!', lang, 'Green')
+                                    pywrite('base.json', base)
+                                case 'Delete User':
+                                    want_delete=super_input('Are you sure you want to delete the selected profile? All scores will be erased. (Enter \"Yes\" or \"No\"): ', lang)
+                                    if new_word(want_delete, lang)=='Yes':
+                                        super_print([f'{change_profile}', 'is deleted.'], lang)
+                                        for i in base:
+                                            base[i].pop(change_profile)
+                                        pywrite('base.json', base)
+                                        if change_profile==data['name']:
+                                            for i in data:
+                                                if i in ('name', 'language'):
+                                                    data[i]=''
+                                                else:
+                                                    data[i]=[]
+                                            pywrite('data.json', data)
+                                case _:
+                                    clear_screen()
+                            break
                         else:
-                            super_print('You don\'t know the password of the selected user. Ask him/her for the password and try again later.', lang, 'Red')
-                    super_input('Enter to exit: ', lang)
-                    clear_screen()
+                            super_print('Incorrect password!!! Please try again.', lang, 'Light Red')
+                    else:
+                        super_print('You don\'t know the password of the selected user. Ask him/her for the password and try again later.', lang, 'Red')
                 else:
-                    clear_screen()
+                    super_print('This user is not in game base', lang)
+                super_input('Enter to exit: ', lang)
+                clear_screen()
             case _:
                 break
     clear_screen()
