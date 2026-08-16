@@ -1,6 +1,7 @@
 from random import choice
 from time import time
 from translator import translator
+from common_utils import *
 from utils_quiz import *
 
 def quiz(base, data):
@@ -22,12 +23,13 @@ def quiz(base, data):
 
                 points, regular, irregular, number, heart=0, 0, 0, 0, 3
 
-                clear_screen()
                 if mode_game=='Timer':
                     parameter, nums_question, seconds=choose_parameter(lang)
 
                 func_loading(lang)
+                clear_screen()
                 super_print('Let\'s Go!!!', lang, 'Green', Style.BRIGHT)
+                print('-'*125)
 
                 while True:
                     match mode_game:
@@ -39,7 +41,8 @@ def quiz(base, data):
                                 if final and is_game_over==False:
                                     seconds=mins*60+secs
                                     points=int(regular+(seconds/(irregular+1)))
-                                    super_print(['Points: ', str(points)], lang, 'Yellow')
+                                    super_print(['Points:', str(points)], lang, 'Yellow')
+                                    print('-'*125)
                                     base['Quiz'][name][0]+=points
                                     pywrite('base.json', base)
                                     break
@@ -48,17 +51,22 @@ def quiz(base, data):
                                 else:
                                     continue
                             elif seconds<=0:
-                                super_print('Time: 00:00. Game Over!!!', lang, 'Red')
+                                super_print('Time: 00:00. You lost!!!', lang, 'Red')
+                                print('-'*125)
                                 break
                         case 'Infinity':
                             if lst==[]:
+                                print('-'*125)
                                 super_print('You are ABSOLUTE CHAMPION!!!', lang, 'Green')
+                                print('-'*125)
                                 base[name][1]=points
                                 pywrite('base.json', base)
                                 break
                             elif heart==0:
+                                print('-'*125)
                                 super_print('Game Over!!!', lang, 'Red')
-                                print(f'{translator("Points: ", lang)}{points}')
+                                super_print(['Points:', points], lang, 'Yellow')
+                                print('-'*125)
                                 if base['Quiz'][name][1]<points:
                                     super_print('You\'ve broken a new highscore!!!', lang, 'Green')
                                     base['Quiz'][name][1]=points

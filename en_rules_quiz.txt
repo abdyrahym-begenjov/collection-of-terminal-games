@@ -68,7 +68,7 @@ time, divided by your penalizing mistakes to ensure a balanced leaderboard score
 This mode tests your long-term survival rather than speed. There is no timer, 
 allowing you to take as much time as you need per question.
 Rules & Mechanics:
-* You begin the game with 3 Heart (❤️) lives.
+* You begin the game with 3 Heart ( ❤️  ) lives.
 * Every correct answer awards you 1 point.
 * Every incorrect answer deducts 1 Heart life.
 * End Game: The game ends immediately when you lose all 3 hearts (Game Over) or 

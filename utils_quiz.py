@@ -25,7 +25,8 @@ def choose_parameter(lang):
     return parameter, nums_question, seconds
 
 def final_result(regular, irregular, number, lang, countdown):
-    print(f'{translator('Time: ', lang)}{countdown}. {translator('Regular: ', lang)}{regular}  {translator('Irregular: ', lang)}{irregular}')
+    print('-'*125)
+    super_print(['Time:', f'{countdown}.', 'Regular:', regular, '   Irregular:', irregular], lang)
     if regular==number:
         super_print('You Win!!!', lang, 'Green')
         print('⭐'*3)
@@ -47,7 +48,7 @@ def final_result(regular, irregular, number, lang, countdown):
         final=False
         is_game_over=False
     else:
-        super_print('Game Over!!!', lang, 'Red')
+        super_print('You lost!!!', lang, 'Red')
         print('💩')
         final=True
         is_game_over=True
@@ -56,7 +57,7 @@ def final_result(regular, irregular, number, lang, countdown):
 def answer_question(lang, v, heart, countdown=None, seconds=None):
     while True:
         if countdown and seconds:
-            answer=super_input(['Time: ', countdown, 'Enter the variant of answer: '], lang)
+            answer=super_input(['Time:', f'{countdown}.', 'Enter the variant of answer: '], lang)
         else:
             answer=super_input(['You have', heart, ' ❤️ .', 'Enter the variant of answer: '], lang)
         answer=answer.upper().strip()
