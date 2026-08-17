@@ -37,6 +37,7 @@ def snakes_and_ladders(base, data):
                 for i in range(game_count-1):
                     x=game(p, c, lst1, base, lang)
                     lst1.append(x)
+                    clear_screen()
 
                 result1=selection_of_order(lst1, game_count, lang, Computer, Human)
 

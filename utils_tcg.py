@@ -16,9 +16,11 @@ def game(p, lst1, base, lang):
         elif name in lst1:
             super_print('This name is already taken!!!', lang, 'Red')
         else:
-            fill_base(name, base, lang)
-            p.pop(0)
-            break
+            is_my_name=super_input('Check if you have entered your name correctly. If not, write \"No\". If yes, then simply press Enter: ', lang, 'Yellow')
+            if new_word(is_my_name, lang)!='No':
+                fill_base(name, base, lang)
+                p.pop(0)
+                break
     return name
 
 def selection_of_order(lst1, game_count, lang, Player):
@@ -320,6 +322,7 @@ def mode_party(name, cities_list, base, lang):
     clear_screen()
     for _ in range(game_count-1):
         lst1.append(game(p, lst1, base, lang))
+        clear_screen()
                 
     result1, new_lst=selection_of_order(lst1, game_count, lang, Player)
     for n, i in enumerate(result1, 1):

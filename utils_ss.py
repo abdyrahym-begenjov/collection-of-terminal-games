@@ -54,8 +54,13 @@ def game(p, c, lst1, base, lang):
             if name=='':
                 name=c[0]
                 c.pop(0)
-            p.pop(0)
-            break
+                p.pop(0)
+                break
+            else:
+                is_my_name=super_input('Check if you have entered your name correctly. If not, write \"No\". If yes, then simply press Enter: ', lang, 'Yellow')
+                if new_word(is_my_name, lang)!='No':
+                    p.pop(0)
+                    break
     if name not in base['Snakes and Ladders'] and name.startswith(('COMPUTER', 'КОМПЬЮТЕР')):
         if name.startswith('КОМПЬЮТЕР'):
             if translator(name, 'en1') in base:

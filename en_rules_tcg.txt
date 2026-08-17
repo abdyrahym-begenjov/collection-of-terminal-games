@@ -21,7 +21,7 @@ with the last letter of the previously named city.
 ### A. INFINITY MODE (Single Player)
 Test your ultimate geographical knowledge and endurance!
 * Setup: The game selects a random starting city from the database.
-* Lives: You begin with 3 Hearts (❤️).
+* Lives: You begin with 3 Hearts ( ❤️  ).
 * Gameplay: 
   - Enter a valid city name starting with the last letter of the current city.
   - Making a mistake (wrong starting letter, invalid city, or a city that has 
@@ -46,11 +46,12 @@ utilizing unique special abilities.
   - Easy: First to reach 10 points.
   - Normal: First to reach 20 points.
   - Hard: First to reach 30 points.
-* Lives & Elimination: Each player starts with 3 Hearts (❤️). Failing to provide 
+* Lives & Elimination: Each player starts with 3 Hearts ( ❤️  ). Failing to provide 
   a valid city on your turn costs 1 Heart. If a player loses all hearts, they are 
-  instantly eliminated from the game.
-  - NOTE: Taking last place (being the first eliminated) results in scoring 0 points 
-  for that match.
+  instantly eliminated from the game. Taking last place (being the first eliminated) 
+  results in scoring 0 points for that match.
+  - NOTE: If all players do not score a single point, they will all be considered 
+  losers.
 
 ---------------------------------------------------------------------------------
 🪅  PARTY MODE SPECIAL ABILITIES

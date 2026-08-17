@@ -125,10 +125,14 @@ def enter_name(data, base, lang):
             clear_screen()
             super_print('The name must not exceed 16 characters!!!', lang, 'Red')
         else:
-            data['name']=name
-            pywrite('data.json', data)
-            fill_base(name, base, lang)
-            return name
+            is_my_name=super_input('Check if you have entered your name correctly. If not, write \"No\". If yes, then simply press Enter: ', lang)
+            if new_word(is_my_name, lang)=='No':
+                clear_screen()
+            else:
+                data['name']=name
+                pywrite('data.json', data)
+                fill_base(name, base, lang)
+                return name
 
 def fill_base(name, base, lang):
     for i in base:
@@ -191,7 +195,7 @@ def settings(data, base, name, lang):
                                         elif new_name in game_system_words:
                                             clear_screen()
                                             super_print('Don\'t write a word that is in the game system.', lang, 'Red')
-                                        elif name in base['Users']:
+                                        elif new_name in base['Users']:
                                             clear_screen()
                                             super_print('This name is already in the game database. Choose another name.', lang, 'Red')
                                         elif len(new_name)>16:

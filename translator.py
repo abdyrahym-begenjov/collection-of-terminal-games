@@ -172,7 +172,8 @@ rutranslate={
     'The password change is complete!!!': 'Изменение пароля завершён!!!',
     'Change Password': 'Изменить Пароль',
     'Are you sure you want to delete the selected profile? All scores will be erased. (Enter \"Yes\" or \"No\"): ': 'Вы точно хотите удалить выбранный профиль. Все баллы будут стёрты. (введите "Да" или "Нет")?: ',
-    'Delete User': 'Удалить Пользователя'
+    'Delete User': 'Удалить Пользователя',
+    'Check if you have entered your name correctly. If not, write \"No\". If yes, then simply press Enter: ': 'Проверьте правильно вы ввели своё имя. Если нет, то напишите \"Нет\". Если да, то просто нажмите Enter: '
              }
 
 
