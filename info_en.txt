@@ -1,0 +1,107 @@
+=================================================================================
+                  SYSTEM AND GAMEPLAY: COMPLETE GUIDE AND RULES
+=================================================================================
+"COLLECTION OF TERMINAL GAMES" is a collection of five classic terminal games that 
+offer a cozy atmosphere and bring the player back to the good old days. All modules 
+are unified by a single database, profile system, and flexible settings.
+
+---------------------------------------------------------------------------------
+1. GAMES IN THE COLLECTION
+---------------------------------------------------------------------------------
+The bundle includes:
+    * The Cities Game
+    * Rock, Paper, Scissors
+    * Hangman
+    * Snakes and Ladders
+    * Quiz
+
+---------------------------------------------------------------------------------
+2. FIRST LAUNCH AND INITIALIZATION
+---------------------------------------------------------------------------------
+Upon the initial launch of the program (or if there are no registered users in the 
+database), the system requires the player to complete the initial setup:
+    * Interface language selection (Russian / English).
+    * Profile creation: entering a username and password (the password can be 
+    anything, including empty).
+
+Data Distribution:
+    * date.json — stores local parameters of the current session (selected language, 
+    current player name, and system settings).
+    * base.json — global database storing the list of all players, their passwords, 
+    and total high scores.
+
+---------------------------------------------------------------------------------
+3. MAIN MENU AND GAME SELECTION
+---------------------------------------------------------------------------------
+The main menu displays a list of available modules with color-coded indication:
+    * Blue color: Game modes.
+    * Gray color: System and profile settings (Settings).
+    * Cyan color: Information and Help (Help).
+    * Light Red color: Exit program (Exit).
+
+Launching and Selecting a Game:
+    * To start playing, the user types the name of the desired game into the input 
+field of the main menu.
+    * When an existing game name is entered, the program automatically loads and 
+launches the corresponding game module.
+    * Before gameplay begins, the individual rules of the selected game are displayed,
+ after which the player starts the match.
+
+Main Menu Input Handling:
+    * The system is case-insensitive and ignores extra spaces.
+    * If an invalid entry is made, the command is simply ignored, and the program 
+    does nothing while waiting for a valid value.
+
+---------------------------------------------------------------------------------
+4. "SETTINGS" MODE
+---------------------------------------------------------------------------------
+This section allows modifying system parameters and managing accounts.
+Available options:
+    * Language Change: toggle the interface (Russian / English).
+    * Switch User: switch to another name or register a new player with password 
+    creation and entry into base.json.
+    * Modify Player Profile: view the list of all registered users to change 
+    password, change name, or completely delete a profile.
+
+Safety Rules, Validation, and Error Handling:
+    * Input in Settings: Any incorrectly entered data or simply pressing Enter 
+    when selecting options instantly returns the player to the Main Menu.
+    * Password Protection: Editing or deleting an account requires entering the 
+    correct password. You get 3 attempts. If the password is entered incorrectly 
+    3 times, the program displays a message asking you to remember your password 
+    and sends the user to the settings menu.
+    * Profile Deletion: Deleting an account from base.json permanently erases all 
+    points and high scores of the player across all five games.
+
+Username Criteria: The name must be unique, contain no system words, must not be 
+empty, and must not exceed 16 characters (case and spaces are ignored during 
+validation).
+
+---------------------------------------------------------------------------------
+5. "HELP" MODE
+---------------------------------------------------------------------------------
+The Help section contains strictly the rules for operating the program itself, 
+descriptions of the interface, and the data saving structure. Each of the five 
+games has its own individual rules displayed directly upon launching that specific 
+game.
+
+---------------------------------------------------------------------------------
+6. EXIT
+---------------------------------------------------------------------------------
+When choosing the exit section, the program requests confirmation:
+    * "No" — return to the menu.
+    * "Yes" — exit the application.
+
+---------------------------------------------------------------------------------
+7. GAME MECHANICS AND AI
+---------------------------------------------------------------------------------
+There is no AI in the project. Computer actions are built entirely on simulated 
+randomness (RNG).
+
+---------------------------------------------------------------------------------
+8. PROJECT SUPPORT
+---------------------------------------------------------------------------------
+If you enjoyed this collection and it brought back a pleasant sense of nostalgia, 
+don't forget to star the project on GitHub and recommend it to your friends and 
+acquaintances!
+=================================================================================

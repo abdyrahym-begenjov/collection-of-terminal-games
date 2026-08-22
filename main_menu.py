@@ -26,14 +26,18 @@ while True:
         return_cursor()
 
     super_print('COLLECTION OF TERMINAL GAMES', lang, 'White', Style.BRIGHT)
-    super_print(['Creator: Abdyrahym Begenjov', 10*' ','(GitHub: abdyrahym-begenjov)'], lang)
-    super_print('The Cities Game', lang)
-    super_print('Rock, Scissors, Paper', lang)
-    super_print('Hangman', lang)
-    super_print('Snakes and Ladders', lang)
-    super_print('Quiz', lang)
-    super_print('Settings', lang)
-    super_print('Exit', lang)
+    super_print(['Creator: Abdyrahym Begenjov', 45*' ','(GitHub: abdyrahym-begenjov)'], lang)
+    print('-'*125)
+    super_print(['🟩🟩🟩🟩🟩', ' '*8, '⬜⬜⬜⬜⬜'], lang)
+    super_print(['🟩⬛🟩⬛🟩', ' '*8, '⬜⬛⬜⬛⬜', ' '*45,'The Cities Game'], lang, 'Blue')
+    super_print(['🟩🟩🟩🟩🟩', ' '*8, '⬜⬜⬜⬜⬜', ' '*45, 'Rock, Scissors, Paper'], lang, 'Blue')
+    super_print(['🟩🟩🟩🟩🟩', ' '*8, '⬜⬛⬜⬛⬜', ' '*45, 'Hangman'], lang, 'Blue')
+    super_print([' '*3, '🟩', ' '*12, '⬜⬜⬜⬜⬜', ' '*45, 'Snakes and Ladders'], lang, 'Blue')
+    super_print([' '*3, '🟩', ' '*12, '🟩🟩🟩🟩🟩', ' '*45, 'Quiz'], lang, 'Blue')
+    super_print([' '*3, '🟩', ' '*20, '🟩', ' '*45, 'Settings'], lang, 'Dark Grey')
+    super_print([' '*3, '🟩', ' '*20, '🟩', ' '*45, 'Help'], lang, 'Cyan')
+    super_print([' '*3, '🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩', ' '*45, 'Exit'], lang, 'Light Red')
+    print('-'*125)
     choose_game=super_input('Choose a game or parameter: ', lang)
     choose_game=new_word(choose_game, lang)
     match choose_game:
@@ -64,13 +68,22 @@ while True:
 
         case 'Settings':
             name, lang=settings(data, base, name, lang)
+        
+        case 'Help':
+            clear_screen()
+            if lang=='ru':
+                information=pyread('info_ru.txt')
+            else:
+                information=pyread('info_en.txt')
+            super_print(information, lang)
+            exit_to_mode(lang)
             
         case 'Exit':
-            if exit_to_game(lang)=='No':
-                clear_screen()
-            else:
+            if exit_to_game(lang)=='Yes':
                 super_print('Goodbye!!!', lang)
                 super_input('Enter to exit: ', lang)
                 break
+            else:
+                clear_screen()
         case _:
             clear_screen()
