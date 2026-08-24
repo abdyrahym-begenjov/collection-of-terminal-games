@@ -45,7 +45,7 @@ def game(p, c, lst1, base, lang):
         name=super_input([f'[{p[0]}]', 'Enter name: '], lang, 'Yellow')
         name=name.strip().title()
         if name in lst1:
-            super_print('This name is already taken', lang, 'Red')
+            super_print('This name is already taken!!!', lang, 'Red')
         elif name in game_system_words:
             super_print('Don\'t write a word that is in the game system.', lang, 'Red')
         elif len(name)>16:
@@ -60,6 +60,7 @@ def game(p, c, lst1, base, lang):
                 is_my_name=super_input('Check if you have entered your name correctly. If not, write \"No\". If yes, then simply press Enter: ', lang, 'Yellow')
                 if new_word(is_my_name, lang)!='No':
                     p.pop(0)
+                    fill_base(name, base, lang)
                     break
     if name not in base['Snakes and Ladders'] and name.startswith(('COMPUTER', 'КОМПЬЮТЕР')):
         if name.startswith('КОМПЬЮТЕР'):
@@ -69,7 +70,6 @@ def game(p, c, lst1, base, lang):
                 base['Snakes and Ladders'][translator(name, 'en1')]=0
         elif name.startswith('COMPUTER'):
             base['Snakes and Ladders'][name]=0
-    fill_base(name, base, lang)
     return name
 
 def selection_of_order(lst1, game_count, lang, Computer, Human):
@@ -190,10 +190,14 @@ def brosok(obj, base, lang, parameters, result1, final_num, points_list, w, Huma
                                 if da_blin==obj.name:
                                     super_print('Don\'t write your name!!!', lang, 'Red')
                                 elif da_blin in [i.name for i in result1]:
-                                    super_print(f'{obj.name} --> {da_blin}', lang, 'Blue')
                                     for i in result1:
                                         if da_blin==i.name:
-                                            obj.level, i.level=obj.teleport(i)
+                                            if i.level==parameter:
+                                                super_print('You cannot use teleportation on a player who has already finished their game!!!', lang, 'Red')
+                                            else:
+                                                obj.level, i.level=obj.teleport(i)
+                                                super_print(f'{obj.name} --> {da_blin}', lang, 'Blue')
+                                                break
                                     break
                                 else:
                                     super_print('Error!!!', lang, 'Red')
