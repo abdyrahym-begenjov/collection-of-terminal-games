@@ -94,7 +94,8 @@ consumes it for the remainder of the match. Human players can activate the
 following keywords on their turn:
 * 🌀  Teleport: Instantly swaps your current tile position with the tile position 
 of any chosen opponent. Using a teleportation consumes your turn and skips your 
-standard dice roll phase.
+standard dice roll phase. You cannot use this ability on a player who has already 
+completed their turn.
 * ✖️  Double: Doubling your roll ensures that whatever number you get on your 
 subsequent dice roll for that turn is multiplied by 2 (e.g., rolling a 4 advances 
 you 8 tiles).
@@ -106,6 +107,7 @@ for that turn.
 * 🧊  Ice: Freezes an opponent of your choice. On that targeted opponent's immediate 
 next turn, they are marked as "iced", meaning they are skipped entirely, unable to 
 move or use abilities. They automatically thaw out after their skipped turn concludes.
+You cannot use this ability on a player who has already completed their turn.
 
 ---------------------------------------------------------------------------------
 📊  WINNING, PLACEMENTS, AND SCORING

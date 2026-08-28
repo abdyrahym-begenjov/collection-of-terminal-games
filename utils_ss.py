@@ -190,14 +190,19 @@ def brosok(obj, base, lang, parameters, result1, final_num, points_list, w, Huma
                                 if da_blin==obj.name:
                                     super_print('Don\'t write your name!!!', lang, 'Red')
                                 elif da_blin in [i.name for i in result1]:
+                                    is_finished=False
                                     for i in result1:
                                         if da_blin==i.name:
                                             if i.level==parameter:
                                                 super_print('You cannot use teleportation on a player who has already finished their game!!!', lang, 'Red')
+                                                is_finished=True
+                                                break
                                             else:
                                                 obj.level, i.level=obj.teleport(i)
                                                 super_print(f'{obj.name} --> {da_blin}', lang, 'Blue')
                                                 break
+                                    if is_finished:
+                                        continue
                                     break
                                 else:
                                     super_print('Error!!!', lang, 'Red')
@@ -230,12 +235,21 @@ def brosok(obj, base, lang, parameters, result1, final_num, points_list, w, Huma
                                 if da_blin==obj.name:
                                     super_print('Don\'t write your name!!!', lang, 'Red')
                                 elif da_blin in [i.name for i in result1]:
-                                    super_print(['ICE:', da_blin], lang, 'Blue')
+                                    is_finished=False
                                     for i in result1:
                                         if da_blin==i.name:
-                                            i.play=ice(i)
-                                    obj.money_ice=0
-                                    obj.moneys-=1
+                                            if i.level==parameter:
+                                                super_print('You cannot use teleportation on a player who has already finished their game!!!', lang, 'Red')
+                                                is_finished=True
+                                                break
+                                            else:
+                                                super_print(['ICE:', da_blin], lang, 'Blue')
+                                                i.play=ice(i)
+                                                obj.money_ice=0
+                                                obj.moneys-=1
+                                                break
+                                    if is_finished:
+                                        continue
                                     break
                                 else:
                                     super_print('Error!!!', lang, 'Red')
